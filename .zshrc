@@ -32,3 +32,4 @@ setopt COMPLETE_IN_WORD
 
 # autoload -U colors
 #colors
+eval "$(starship init zsh)"
