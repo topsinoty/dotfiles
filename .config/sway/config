@@ -127,8 +127,8 @@ client.placeholder          #7A8BBB    #030E16    #D4DDE4        #7A8BBB        
 # Layout stuff:
 #
     # You can "split" the current object of your focus 
-    bindsym $mod+h splith
-    bindsym $mod+v splitv
+    bindsym $mod+Shift+h splith
+    bindsym $mod+Shift+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -196,3 +196,13 @@ bindsym $mod+r mode "resize"
 # the trick, it's all in the `wordexp(3)`.
 #
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+
+
+
+exec clipse -listen                                                                        # run the background listener on startup
+
+for_window [app_id="clipse"] floating enable, move position center, resize set 80ppt 80ppt # style window to look nice
+
+bindsym $mod+V exec $term --class clipse -e clipse                               # bind floating shell with clipse TUI
+
+# Example: bindsym $mod+V exec alacritty --class clipse -e clipse
