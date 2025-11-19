@@ -35,3 +35,8 @@ setopt COMPLETE_IN_WORD
 eval "$(starship init zsh)"
 source <(fzf --zsh)
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+EDITOR="$(which micro)"
