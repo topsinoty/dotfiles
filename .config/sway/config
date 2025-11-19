@@ -14,6 +14,24 @@ output eDP-1 resolution 1920x1080 position 1920,0
 # Home monitor
 # output  'Dell Inc. DELL U2412M 0FFXD3AP320L'
 
+
+# Gaps
+gaps inner 3px
+gaps outer 2px
+
+
+# border
+default_border pixel 2px
+default_floating_border pixel 2px
+
+
+                          #border    #bg        #foreground    #indicator      #child_border 
+client.focused            #7EB3D6    #030E16    #D4DDE4        #000000         #000000
+client.focused_inactive   #7A8D9B    #030E16    #D4DDE4        #7A8D9B         #7A8D9B
+client.unfocused          #112432    #030E16    #D4DDE4        #112432         #112432
+client.urgent             #FF6B6B    #030E16    #D4DDE4        #FF6B6B         #FF6B6B
+client.placeholder        #7A8BBB    #030E16    #D4DDE4        #7A8BBB         #7A8BBB
+
 ### Idle configuration
 #
 # Example configuration:
