@@ -1,0 +1,8 @@
+width=20%
+prompt=App search
+no_actions=true
+hide_scroll=true
+line_wrap=word_char
+dynamic_lines=true
+use_search_box=false
+gtk_dark=true
