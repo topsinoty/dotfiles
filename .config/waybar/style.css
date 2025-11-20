@@ -1,0 +1,174 @@
+* {
+    font-family: 'JetBrainsMono Nerd Font';
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+
+window#waybar {
+    background-color: #030E16;
+    color: #D4DDE4;
+}
+
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+
+#workspaces {
+    margin: 0 8px;
+}
+
+
+#workspaces button {
+    padding: 0 8px;
+    color: #7A8D9B;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+
+#workspaces button:hover {
+    color: #112432;
+}
+
+
+#workspaces button.active {
+    color: #00FFAA;
+    background-color: #112432;
+    border-bottom: 2px solid #00FFAA;
+}
+
+
+#workspaces button.urgent {
+    color: #FF6B6B;
+    background-color: #112432;
+    animation: urgent-blink 1s ease-in-out infinite;
+}
+
+
+/* @keyframes urgent-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+} */
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#backlight {
+    padding: 0 10px;
+    color: #D4DDE4;
+}
+
+#battery.charging {
+    color: #00FFAA;
+}
+
+#battery.critical:not(.charging) {
+    color: #FF6B6B;
+    animation: critical-blink 0.5s ease-in-out infinite;
+}
+
+/* @keyframes critical-blink {
+
+    0%,
+    100% {
+        color: #FF6B6B;
+    }
+
+    50% {
+        color: #D4DDE4;
+    }
+} */
+
+#temperature.critical {
+    color: #FF6B6B;
+    font-weight: 600;
+}
+
+#cpu.warning,
+#memory.warning {
+    color: #7EB3D6;
+}
+
+#cpu.critical,
+#memory.critical {
+    color: #FF6B6B;
+}
+
+#network.disconnected {
+    color: #7A8D9B;
+}
+
+#network.connected {
+    color: #00FFAA;
+}
+
+#network.ethernet {
+    color: #7EB3D6;
+}
+
+#pulseaudio {
+    color: #7EB3D6;
+}
+
+#pulseaudio.muted {
+    color: #7A8D9B;
+}
+
+#backlight {
+    color: #7EB3D6;
+}
+
+#mode {
+    background-color: #00FFAA;
+    color: #030E16;
+    padding: 0 12px;
+    font-weight: bold;
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    color: #00FFAA;
+}
+
+#clock {
+    color: #7EB3D6;
+    font-weight: 600;
+}
+
+#idle_inhibitor {
+    color: #7A8D9B;
+}
+
+#idle_inhibitor.activated {
+    color: #00FFAA;
+    font-weight: 600;
+}
