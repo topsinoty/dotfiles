@@ -129,25 +129,26 @@
         "format-disconnected": "󰖪 Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n󰓢 {bandwidthUpBytes} 󰓦 {bandwidthDownBytes}",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\n󰓢 {bandwidthUpBytes} 󰓦 {bandwidthDownBytes}",
-        "interval": 5
+        "interval": 5,
+        "on-click": "nm-connection-editor"
+},
+"pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 {volume}%",
+    "format-icons": {
+        "headphone": "󰋋",
+        "hands-free": "󱡏",
+        "headset": "󰋎",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [
+            "󰕿",
+            "󰖀",
+            "󰕾"
+        ]
     },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰖁 {volume}%",
-        "format-icons": {
-            "headphone": "󰋋",
-            "hands-free": "󱡏",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "󰕿",
-                "󰖀",
-                "󰕾"
-            ]
-        },
-        "on-click": "pavucontrol",
-        "tooltip-format": "{desc}\n{volume}%"
-    }
+    "on-click": "pavucontrol",
+    "tooltip-format": "{desc}\n{volume}%"
+}
 }

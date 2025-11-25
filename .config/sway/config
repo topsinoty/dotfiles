@@ -206,3 +206,5 @@ for_window [app_id="clipse"] floating enable, move position center, resize set 8
 bindsym $mod+V exec $term --app-id=clipse -e clipse                               # bind floating shell with clipse TUI
 
 exec systemctl --user import-environment QT_QPA_PLATFORMTHEME QT_STYLE_OVERRIDE
+
+for_window [app_id="nm-connection-editor"] floating enable, move position center resize set 160ppt 120ppt
