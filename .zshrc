@@ -33,6 +33,7 @@ setopt COMPLETE_IN_WORD
 # autoload -U colors
 #colors
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

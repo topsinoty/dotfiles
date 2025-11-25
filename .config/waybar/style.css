@@ -50,20 +50,6 @@ window#waybar.hidden {
     animation: urgent-blink 1s ease-in-out infinite;
 }
 
-
-/* @keyframes urgent-blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.6;
-    }
-} */
-
-
 #clock,
 #battery,
 #cpu,
@@ -87,18 +73,6 @@ window#waybar.hidden {
     color: #FF6B6B;
     animation: critical-blink 0.5s ease-in-out infinite;
 }
-
-/* @keyframes critical-blink {
-
-    0%,
-    100% {
-        color: #FF6B6B;
-    }
-
-    50% {
-        color: #D4DDE4;
-    }
-} */
 
 #temperature.critical {
     color: #FF6B6B;

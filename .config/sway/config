@@ -203,6 +203,6 @@ exec clipse -listen                                                             
 
 for_window [app_id="clipse"] floating enable, move position center, resize set 80ppt 80ppt # style window to look nice
 
-bindsym $mod+V exec $term --class clipse -e clipse                               # bind floating shell with clipse TUI
+bindsym $mod+V exec $term --app-id=clipse -e clipse                               # bind floating shell with clipse TUI
 
-# Example: bindsym $mod+V exec alacritty --class clipse -e clipse
+exec systemctl --user import-environment QT_QPA_PLATFORMTHEME QT_STYLE_OVERRIDE
