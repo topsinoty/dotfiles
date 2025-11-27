@@ -1,10 +1,5 @@
-# Global / System-wide EditorConfig
-# Place this in ~/.editorconfig (Linux/macOS) or %USERPROFILE%\.editorconfig (Windows)
-# Most editors respect this as a fallback for all projects
-
 root = true
 
-# 1. Default settings for all files
 [*]
 charset = utf-8
 end_of_line = lf
@@ -14,60 +9,32 @@ indent_style = space
 indent_size = 4
 tab_width = 4
 
-# 2. Override for Makefiles (which must use tabs)
-[Makefile]
+[*.{sh,go,Makefile}]
 indent_style = tab
 
-# 3. YAML / JSON / TOML files
-[*.{yml,yaml,json,toml}]
+[*.{yml,yaml,json,jsonc,toml}]
 indent_size = 2
 
-# 4. Markdown / plaintext
 [*.md]
 trim_trailing_whitespace = false
 max_line_length = 120
 indent_size = 2
 
-# 5. Python files
 [*.py]
 indent_size = 4
 max_line_length = 88
 trim_trailing_whitespace = true
 
-# 6. JavaScript / TypeScript / JSX / TSX
 [*.{js,jsx,ts,tsx}]
 indent_size = 2
 quote_type = single
 
-# 7. HTML / XML
-[*.{html,xml}]
+[*.{html,xml,css,scss,less}]
 indent_size = 2
 
-# 8. CSS / SCSS / LESS
-[*.{css,scss,less}]
-indent_size = 2
-
-# 9. Shell scripts
-[*.sh]
-indent_style = tab
-
-# 10. C / C++ / Java
-[*.{c,cpp,h,hpp,java}]
+[*.{c,cpp,h,hpp,java,rs,sql}]
 indent_size = 4
 
-# 11. Go
-[*.go]
-indent_style = tab
-
-# 12. Rust
-[*.rs]
-indent_size = 4
-
-# 13. SQL
-[*.sql]
-indent_size = 4
-
-# 14. Disable trimming for some files (binary, images, etc.)
 [*.{png,jpg,jpeg,gif,ico,svg,bin,exe}]
 trim_trailing_whitespace = false
 insert_final_newline = false
