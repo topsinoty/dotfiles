@@ -36,11 +36,11 @@ client.placeholder          #7A8BBB    #030E16    #D4DDE4        #7A8BBB        
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -61,7 +61,7 @@ client.placeholder          #7A8BBB    #030E16    #D4DDE4        #7A8BBB        
 
 ### Key bindings
     bindsym $mod+Return exec $term
-    bindsym $mod+q kill
+    bindsym $mod+Shift+q kill
     bindsym $mod+Space exec $menu
     bindsym $mod+b exec $browser
 
