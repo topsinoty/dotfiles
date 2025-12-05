@@ -61,7 +61,6 @@ input * {
     xkb_options grp:alt_shift_toggle
 }
 
-bindsym $mod+period exec swaymsg input '*' xkb_switch_layout next
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -216,3 +215,10 @@ bindsym $mod+V exec $term --app-id=clipse -e clipse                             
 exec systemctl --user import-environment QT_QPA_PLATFORMTHEME QT_STYLE_OVERRIDE
 
 for_window [app_id="nm-connection-editor"] floating enable, move position center resize set 160ppt 120ppt
+
+
+# utilities
+bindsym $mod+period exec swaymsg input '*' xkb_switch_layout next
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - \
+    | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y%m%d_%H%M%S').png \
+    | wl-copy
