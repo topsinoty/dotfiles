@@ -56,6 +56,13 @@ exec swayidle -w \
 #       middle_emulation enabled
 #   }
 #
+input * {
+    xkb_layout us,ee
+    xkb_options grp:alt_shift_toggle
+}
+
+bindsym $mod+period exec swaymsg input '*' xkb_switch_layout next
+
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
