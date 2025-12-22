@@ -22,3 +22,5 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(mise activate zsh)"
 
 EDITOR="micro"
+# add jetbrains toolbox....not manually upgradable
+export PATH="$HOME/Applications/jetbrains-toolbox-3.2.0.65851/bin:$PATH"
