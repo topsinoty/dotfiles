@@ -222,3 +222,4 @@ bindsym $mod+period exec swaymsg input '*' xkb_switch_layout next
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - \
     | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y%m%d_%H%M%S').png \
     | wl-copy
+bindsym $mod+n exec swaync-client -t normal
