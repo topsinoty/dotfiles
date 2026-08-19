@@ -25,8 +25,8 @@ Executable helpers live under `dotfiles/.local/bin`. They keep shell logic out
 of Sway bindings and are installed through the same Stow package.
 
 The Stow package also owns the Bash and Zsh startup files, Git configuration,
-Starship prompt, Nano configuration, and the `~/Code` EditorConfig scope. Zsh
-is primary; Bash remains a supported fallback.
+Starship prompt, and Nano configuration. Zsh is primary; Bash remains a
+supported fallback.
 
 `manifest/colloid-revisions.env` pins the upstream revisions against which the
 GTK override and Kvantum patches were tested. These were the upstream `HEAD`
@@ -120,11 +120,9 @@ for file in .bashrc .zshrc .gitconfig .nanorc; do
   [ ! -e "$HOME/$file" ] || mv "$HOME/$file" "$backup/$file"
 done
 
-mkdir -p "$backup/.config" "$backup/Code"
+mkdir -p "$backup/.config"
 [ ! -e "$HOME/.config/starship.toml" ] || \
   mv "$HOME/.config/starship.toml" "$backup/.config/starship.toml"
-[ ! -e "$HOME/Code/.editorconfig" ] || \
-  mv "$HOME/Code/.editorconfig" "$backup/Code/.editorconfig"
 ```
 
 ### 3. Stow authored files
