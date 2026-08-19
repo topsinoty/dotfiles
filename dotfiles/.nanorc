@@ -1,4 +1,5 @@
 set linenumbers
+set numbercolor cyan
 set autoindent
 set tabsize 4
 set tabstospaces
