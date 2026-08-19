@@ -32,7 +32,9 @@ Sway is composed from independent modules:
 ~/.config/sway/config
 ├── conf.d/settings.conf
 ├── generated/base.conf      patched from /etc/sway/config
+├── conf.d/input.conf
 ├── conf.d/keybinds.conf
+├── conf.d/windows.conf
 ├── conf.d/theme.conf
 └── conf.d/extensions.conf
 ```

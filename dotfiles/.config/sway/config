@@ -1,6 +1,8 @@
 # Compose Fedora's generated stock base with small personal modules.
 include ~/.config/sway/conf.d/settings.conf
 include ~/.config/sway/generated/base.conf
+include ~/.config/sway/conf.d/input.conf
 include ~/.config/sway/conf.d/keybinds.conf
+include ~/.config/sway/conf.d/windows.conf
 include ~/.config/sway/conf.d/theme.conf
 include ~/.config/sway/conf.d/extensions.conf
