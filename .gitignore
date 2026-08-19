@@ -1,0 +1,7 @@
+# Generated locally from installed Colloid assets; never commit.
+generated/
+
+# Test and editor debris.
+.stow-test/
+*.swp
+*~
