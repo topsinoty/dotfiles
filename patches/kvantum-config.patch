@@ -1,0 +1,193 @@
+--- ColloidNordDark.kvconfig
++++ PersonalColloid.kvconfig
+@@ -14 +14 @@
+-menu_shadow_depth=6
++menu_shadow_depth=0
+@@ -16 +16 @@
+-tooltip_shadow_depth=7
++tooltip_shadow_depth=0
+@@ -73 +73 @@
+-shadowless_popup=false
++shadowless_popup=true
+@@ -79,19 +79,19 @@
+-window.color=#242932
+-base.color=#242932
+-alt.base.color=#272c35
+-button.color=#414958
+-light.color=#475061
+-mid.light.color=#3c4352
+-dark.color=#23272f
+-mid.color=#2b303b
+-highlight.color=#89a3c2
+-inactive.highlight.color=#89a3c2
+-text.color=#d9dce3
+-window.text.color=#d9dce3
+-button.text.color=#d9dce3
+-disabled.text.color=#586379
+-tooltip.text.color=#edeff3
+-highlight.text.color=#ffffff
+-link.color=#0057AE
+-link.visited.color=#E040FB
+-progress.indicator.text.color=#d9dce3
++window.color=#030609
++base.color=#030609
++alt.base.color=#0A1118
++button.color=#0A1118
++light.color=#647582
++mid.light.color=#0A1118
++dark.color=#030609
++mid.color=#0A1118
++highlight.color=#00C8FF
++inactive.highlight.color=#00C8FF
++text.color=#D7E0E7
++window.text.color=#D7E0E7
++button.text.color=#D7E0E7
++disabled.text.color=#647582
++tooltip.text.color=#D7E0E7
++highlight.text.color=#030609
++link.color=#00C8FF
++link.visited.color=#00C8FF
++progress.indicator.text.color=#D7E0E7
+@@ -137,4 +137,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
+-text.press.color=white
+-text.toggle.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -149,4 +149,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
+-text.press.color=white
+-text.toggle.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -167,4 +167,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
+-text.press.color=white
+-text.toggle.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -182 +182 @@
+-text.normal.color=#d9dce3
++text.normal.color=#D7E0E7
+@@ -188,2 +188,2 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
+@@ -202 +202 @@
+-text.normal.color=#d9dce3
++text.normal.color=#D7E0E7
+@@ -212,2 +212,2 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
+@@ -221,2 +221,2 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
+@@ -274,3 +274,3 @@
+-text.normal.color=#d9dce3
+-text.press.color=#d9dce3
+-text.focus.color=white
++text.normal.color=#D7E0E7
++text.press.color=#D7E0E7
++text.focus.color=#D7E0E7
+@@ -292,4 +292,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#d9dce3
+-text.press.color=white
+-text.toggle.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -321,4 +321,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
+-text.press.color=white
+-text.toggle.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -337,4 +337,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
+-text.press.color=#d9dce3
+-text.toggle.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -367,4 +367,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#d9dce3
+-text.press.color=#d9dce3
+-text.toggle.color=#d9dce3
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -393,4 +393,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#d9dce3
+-text.press.color=#ffffff
+-text.toggle.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -435 +435 @@
+-text.normal.color=#d9dce3
++text.normal.color=#D7E0E7
+@@ -446,2 +446,2 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
+@@ -464,4 +464,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#ffffff
+-text.press.color=#ffffff
+-text.toggle.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -484,4 +484,4 @@
+-text.normal.color=#d9dce3
+-text.focus.color=#ffffff
+-text.press.color=#ffffff
+-text.toggle.color=#ffffff
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -503,2 +503,2 @@
+-text.normal.color=#787878
+-text.focus.color=#d9dce3
++text.normal.color=#647582
++text.focus.color=#D7E0E7
+@@ -521,3 +521,3 @@
+-text.focus.color=white
+-text.press.color=#d9dce3
+-text.toggle.color=white
++text.focus.color=#D7E0E7
++text.press.color=#D7E0E7
++text.toggle.color=#D7E0E7
+@@ -530,2 +530,2 @@
+-text.normal.color=#d9dce3
+-text.focus.color=white
++text.normal.color=#D7E0E7
++text.focus.color=#D7E0E7
