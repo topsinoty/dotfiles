@@ -79,6 +79,14 @@ window#waybar {
   color: @cyan;
 }
 
+#language {
+  color: @cyan;
+}
+
+#battery {
+  color: @text;
+}
+
 #battery.charging,
 #battery.full {
   color: @mint;
@@ -86,6 +94,18 @@ window#waybar {
 
 #battery.warning {
   color: @coral;
+}
+
+#cpu.warning,
+#memory.warning {
+  color: @coral;
+}
+
+#cpu.critical,
+#memory.critical,
+#temperature.critical {
+  color: @void;
+  background: @coral;
 }
 
 #battery.critical {

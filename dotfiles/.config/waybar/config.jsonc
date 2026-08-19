@@ -11,11 +11,13 @@
     "sway/window"
   ],
   "modules-right": [
+    "sway/language",
     "idle_inhibitor",
     "pulseaudio",
     "network",
     "cpu",
     "memory",
+    "temperature",
     "battery",
     "clock",
     "tray"
@@ -27,7 +29,11 @@
     "format": "  MODE  {}  "
   },
   "sway/window": {
-    "format": "{title}"
+    "format": "{title}",
+    "max-length": 50
+  },
+  "sway/language": {
+    "format": "{short}"
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -38,24 +44,61 @@
   },
   "pulseaudio": {
     "format": "VOL {volume}%",
-    "format-muted": "VOL MUTE"
+    "format-muted": "VOL MUTE",
+    "tooltip-format": "{desc}",
+    "on-click": "pavucontrol"
   },
   "network": {
     "format-wifi": "NET {signalStrength}%",
     "format-ethernet": "NET LAN",
-    "format-disconnected": "NET DOWN"
+    "format-disconnected": "NET DOWN",
+    "tooltip-format": "{ifname}  {ipaddr}/{cidr}\nUP {bandwidthUpBytes}  DOWN {bandwidthDownBytes}",
+    "tooltip-format-wifi": "{essid}  {ipaddr}/{cidr}\nUP {bandwidthUpBytes}  DOWN {bandwidthDownBytes}",
+    "on-click": "nm-connection-editor"
   },
   "cpu": {
-    "format": "CPU {usage}%"
+    "format": "CPU {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 85
+    }
   },
   "memory": {
-    "format": "MEM {percentage}%"
+    "format": "MEM {percentage}%",
+    "tooltip-format": "RAM {used:0.1f}/{total:0.1f}G\nSWAP {swapUsed:0.1f}/{swapTotal:0.1f}G",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    }
+  },
+  "temperature": {
+    "format": "TEMP {temperatureC}°C",
+    "critical-threshold": 80,
+    "tooltip": false
   },
   "battery": {
-    "format": "BAT {capacity}%",
-    "format-charging": "BAT +{capacity}%",
-    "format-full": "BAT FULL",
-    "format-alt": "{time}"
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-full": "󰁹 FULL",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}  {power}W",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
   },
   "clock": {
     "format": "{:%H:%M}",
