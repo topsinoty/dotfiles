@@ -54,13 +54,24 @@ Sway config, or copied Colloid SVG.
 ### 1. Install dependencies
 
 ```sh
-sudo dnf install sway waybar foot fuzzel mako gtklock stow patch git fontconfig \
-  sassc gtk-murrine-engine xdg-utils xdg-user-dirs grim slurp brightnessctl playerctl \
-  wl-clipboard cliphist pavucontrol NetworkManager-connection-editor libnotify \
-  zsh zoxide fzf nano zsh-autosuggestions zsh-syntax-highlighting
+sudo dnf copr enable atim/starship
+sudo dnf copr enable jdxcode/mise
 sudo dnf copr enable lihaohong/yazi
+
+sudo dnf install sway waybar wlogout foot fuzzel mako gtklock stow patch git fontconfig \
+  swayidle wireplumber rofimoji starship mise \
+  google-noto-emoji-fonts \
+  sassc gtk-murrine-engine xdg-utils xdg-user-dirs grim slurp brightnessctl playerctl \
+  wl-clipboard cliphist pavucontrol nm-connection-editor libnotify \
+  zsh zoxide fzf nano zsh-autosuggestions zsh-syntax-highlighting
 sudo dnf install yazi
 ```
+
+Starship and Mise come from their Fedora COPRs and are upgraded normally with
+the rest of the system. Both shell startup files activate Starship, Zoxide,
+Fzf, and Mise when their commands are installed; Zsh additionally loads
+autosuggestions and syntax highlighting. Bash and Zsh retain 100,000 commands
+in shared persistent history, which backs Fzf's `Ctrl+R` search across sessions.
 
 Clone this repository, then fetch and install the pinned Colloid inputs:
 
@@ -97,8 +108,7 @@ and other desktop packages are not installed.
 Install `JetBrainsMono Nerd Font Mono` system-wide using the normal font
 installation method for the machine. The family name must match exactly.
 
-Install Starship system-wide using its normal installation method, then make
-Zsh the login shell:
+Make Zsh the login shell:
 
 ```sh
 chsh -s "$(command -v zsh)"
