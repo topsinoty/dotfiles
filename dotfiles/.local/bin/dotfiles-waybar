@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Keep exactly one Waybar process across Sway configuration reloads.
+set -eu
+
+pkill -x waybar || true
+exec waybar

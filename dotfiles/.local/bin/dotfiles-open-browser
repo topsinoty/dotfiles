@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Resolve the browser on each launch so desktop preference changes take effect.
+set -eu
+
+browser=$(xdg-settings get default-web-browser)
+
+if [ -z "$browser" ]; then
+    notify-send --urgency=critical "No default browser is configured"
+    exit 1
+fi
+
+exec gtk-launch "$browser"
