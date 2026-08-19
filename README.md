@@ -47,9 +47,9 @@ Sway config, or copied Colloid SVG.
 ### 1. Install dependencies
 
 ```sh
-sudo dnf install sway waybar foot fuzzel mako gtklock stow patch git curl \
-  fontconfig sassc gtk-murrine-engine xz grim brightnessctl playerctl \
-  wl-clipboard
+sudo dnf install sway waybar foot fuzzel mako gtklock stow patch git fontconfig \
+  sassc gtk-murrine-engine xdg-utils grim slurp brightnessctl playerctl \
+  wl-clipboard cliphist pavucontrol NetworkManager-connection-editor libnotify
 sudo dnf copr enable lihaohong/yazi
 sudo dnf install yazi
 ```
@@ -82,19 +82,8 @@ cp ~/.local/src/Colloid-kde/Kvantum/ColloidNord/ColloidNordDark.svg \
 Only the two required Kvantum inputs are copied from Colloid KDE; its wallpaper
 and other desktop packages are not installed.
 
-Install JetBrainsMono Nerd Font Mono for the current user:
-
-```sh
-font_tmp=$(mktemp -d)
-curl -fL \
-  https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz \
-  -o "$font_tmp/JetBrainsMono.tar.xz"
-tar -xJf "$font_tmp/JetBrainsMono.tar.xz" -C "$font_tmp"
-mkdir -p ~/.local/share/fonts/JetBrainsMono
-cp "$font_tmp"/JetBrainsMonoNerdFontMono-*.ttf \
-  ~/.local/share/fonts/JetBrainsMono/
-fc-cache -f ~/.local/share/fonts
-```
+Install `JetBrainsMono Nerd Font Mono` system-wide using the normal font
+installation method for the machine. The family name must match exactly.
 
 ### 2. Back up conflicting files
 

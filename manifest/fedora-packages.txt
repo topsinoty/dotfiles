@@ -8,11 +8,9 @@ stow
 patch
 yazi
 git
-curl
 fontconfig
 sassc
 gtk-murrine-engine
-xz
 xdg-utils
 grim
 slurp
