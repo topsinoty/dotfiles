@@ -33,7 +33,8 @@
     "max-length": 50
   },
   "sway/language": {
-    "format": "{short}"
+    "format": "{short}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
   "idle_inhibitor": {
     "format": "{icon}",
