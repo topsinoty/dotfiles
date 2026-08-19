@@ -21,6 +21,9 @@ manifest/   Fedora package checklist
 patches/    Deltas applied to Fedora Sway and installed Colloid assets
 ```
 
+Executable helpers live under `dotfiles/.local/bin`. They keep shell logic out
+of Sway bindings and are installed through the same Stow package.
+
 `manifest/colloid-revisions.env` pins the upstream revisions against which the
 GTK override and Kvantum patches were tested. These were the upstream `HEAD`
 revisions on 2026-08-19. A newer checkout is an intentional upgrade, not a
@@ -57,6 +60,10 @@ sudo dnf install yazi
 Clone this repository, then fetch and install the pinned Colloid inputs:
 
 ```sh
+mkdir -p ~/.local/src
+git clone https://github.com/topsinoty/dotfiles.git ~/.local/src/dotfiles
+cd ~/.local/src/dotfiles
+
 . ./manifest/colloid-revisions.env
 
 git clone https://github.com/vinceliuice/Colloid-gtk-theme.git \
@@ -87,8 +94,8 @@ installation method for the machine. The family name must match exactly.
 
 ### 2. Back up conflicting files
 
-Stow will not overwrite existing application configs. Move any conflicting
-paths somewhere safe before installing:
+Stow will not overwrite existing application configs. Back up any existing
+configuration before moving conflicting files out of the Stow target:
 
 ```sh
 mkdir -p ~/.local/state/dotfiles/manual-backup
@@ -156,8 +163,8 @@ These generated files are intentionally outside Git.
 ### 7. Validate and reload
 
 ```sh
-foot --check-config --config=~/.config/foot/foot.ini
-fuzzel --check-config --config=~/.config/fuzzel/fuzzel.ini
+foot --check-config --config="$HOME/.config/foot/foot.ini"
+fuzzel --check-config --config="$HOME/.config/fuzzel/fuzzel.ini"
 python3 -m json.tool ~/.config/waybar/config.jsonc >/dev/null
 yazi --debug >/dev/null
 sway -C -c ~/.config/sway/config
