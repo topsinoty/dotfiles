@@ -13,7 +13,13 @@ fontconfig
 sassc
 gtk-murrine-engine
 xz
+xdg-utils
 grim
+slurp
 brightnessctl
 playerctl
 wl-clipboard
+cliphist
+pavucontrol
+NetworkManager-connection-editor
+libnotify
