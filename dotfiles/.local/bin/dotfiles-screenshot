@@ -4,7 +4,12 @@
 set -eu
 
 mode=${1:-full}
-directory=$HOME/Pictures/Screenshots
+if command -v xdg-user-dir >/dev/null 2>&1; then
+    pictures=$(xdg-user-dir PICTURES)
+fi
+
+pictures=${pictures:-$HOME/Pictures}
+directory=$pictures/Screenshots
 timestamp=$(date +%Y%m%d-%H%M%S)
 
 mkdir -p "$directory"

@@ -12,6 +12,7 @@ fontconfig
 sassc
 gtk-murrine-engine
 xdg-utils
+xdg-user-dirs
 grim
 slurp
 brightnessctl
@@ -21,3 +22,9 @@ cliphist
 pavucontrol
 NetworkManager-connection-editor
 libnotify
+zsh
+zoxide
+fzf
+nano
+zsh-autosuggestions
+zsh-syntax-highlighting
