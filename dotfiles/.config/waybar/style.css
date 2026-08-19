@@ -1,0 +1,109 @@
+@define-color void #030609;
+@define-color surface #0A1118;
+@define-color text #D7E0E7;
+@define-color muted #647582;
+@define-color cyan #00C8FF;
+@define-color mint #00F5A0;
+@define-color coral #FF466B;
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+window#waybar {
+  background: rgba(3, 6, 9, 0.94);
+  color: @text;
+  border-bottom: 1px solid @surface;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background: transparent;
+}
+
+#workspaces button {
+  padding: 0 12px;
+  color: @muted;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+  background: @surface;
+  color: @text;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+  color: @cyan;
+  background: @surface;
+  border-bottom-color: @cyan;
+}
+
+#workspaces button.urgent {
+  color: @coral;
+  border-bottom-color: @coral;
+}
+
+#mode {
+  color: @void;
+  background: @cyan;
+}
+
+#window {
+  color: @muted;
+  padding: 0 18px;
+  font-weight: 500;
+}
+
+.modules-right > widget > label,
+.modules-right > widget > box {
+  padding: 0 10px;
+  border-left: 1px solid @surface;
+}
+
+#tray {
+  padding: 0 10px;
+  border-left: 1px solid @surface;
+}
+
+#clock {
+  color: @cyan;
+}
+
+#battery.charging,
+#battery.full {
+  color: @mint;
+}
+
+#battery.warning {
+  color: @coral;
+}
+
+#battery.critical {
+  color: @void;
+  background: @coral;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+  color: @coral;
+}
+
+#idle_inhibitor.activated {
+  color: @mint;
+}
+
+tooltip {
+  background: @void;
+  color: @text;
+  border: 1px solid @muted;
+}
