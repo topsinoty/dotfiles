@@ -1,5 +1,4 @@
 #:schema https://yazi-rs.github.io/schemas/theme.json
-# Personal color and square-geometry overrides; everything else inherits Yazi.
 
 [mgr.cwd]
 fg = "#00C8FF"
