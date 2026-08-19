@@ -24,6 +24,10 @@ patches/    Deltas applied to Fedora Sway and installed Colloid assets
 Executable helpers live under `dotfiles/.local/bin`. They keep shell logic out
 of Sway bindings and are installed through the same Stow package.
 
+The Stow package also owns the Bash and Zsh startup files, Git configuration,
+Starship prompt, Nano configuration, and the `~/Code` EditorConfig scope. Zsh
+is primary; Bash remains a supported fallback.
+
 `manifest/colloid-revisions.env` pins the upstream revisions against which the
 GTK override and Kvantum patches were tested. These were the upstream `HEAD`
 revisions on 2026-08-19. A newer checkout is an intentional upgrade, not a
@@ -51,8 +55,9 @@ Sway config, or copied Colloid SVG.
 
 ```sh
 sudo dnf install sway waybar foot fuzzel mako gtklock stow patch git fontconfig \
-  sassc gtk-murrine-engine xdg-utils grim slurp brightnessctl playerctl \
-  wl-clipboard cliphist pavucontrol NetworkManager-connection-editor libnotify
+  sassc gtk-murrine-engine xdg-utils xdg-user-dirs grim slurp brightnessctl playerctl \
+  wl-clipboard cliphist pavucontrol NetworkManager-connection-editor libnotify \
+  zsh zoxide fzf nano zsh-autosuggestions zsh-syntax-highlighting
 sudo dnf copr enable lihaohong/yazi
 sudo dnf install yazi
 ```
@@ -92,6 +97,13 @@ and other desktop packages are not installed.
 Install `JetBrainsMono Nerd Font Mono` system-wide using the normal font
 installation method for the machine. The family name must match exactly.
 
+Install Starship system-wide using its normal installation method, then make
+Zsh the login shell:
+
+```sh
+chsh -s "$(command -v zsh)"
+```
+
 ### 2. Back up conflicting files
 
 Stow will not overwrite existing application configs. Back up any existing
@@ -101,6 +113,18 @@ configuration before moving conflicting files out of the Stow target:
 mkdir -p ~/.local/state/dotfiles/manual-backup
 cp -a ~/.config/sway ~/.config/gtk-3.0 ~/.config/gtk-4.0 \
   ~/.config/Kvantum ~/.local/state/dotfiles/manual-backup/ 2>/dev/null || true
+
+# Preserve shell and tool files that would conflict with Stow.
+backup=$HOME/.local/state/dotfiles/manual-backup
+for file in .bashrc .zshrc .gitconfig .nanorc; do
+  [ ! -e "$HOME/$file" ] || mv "$HOME/$file" "$backup/$file"
+done
+
+mkdir -p "$backup/.config" "$backup/Code"
+[ ! -e "$HOME/.config/starship.toml" ] || \
+  mv "$HOME/.config/starship.toml" "$backup/.config/starship.toml"
+[ ! -e "$HOME/Code/.editorconfig" ] || \
+  mv "$HOME/Code/.editorconfig" "$backup/Code/.editorconfig"
 ```
 
 ### 3. Stow authored files
@@ -166,6 +190,10 @@ These generated files are intentionally outside Git.
 foot --check-config --config="$HOME/.config/foot/foot.ini"
 fuzzel --check-config --config="$HOME/.config/fuzzel/fuzzel.ini"
 python3 -m json.tool ~/.config/waybar/config.jsonc >/dev/null
+python3 -c 'import pathlib, tomllib; tomllib.loads(pathlib.Path.home().joinpath(".config/starship.toml").read_text())'
+bash -n ~/.bashrc
+zsh -n ~/.zshrc
+nano --rcfile ~/.nanorc --version >/dev/null
 yazi --debug >/dev/null
 sway -C -c ~/.config/sway/config
 swaymsg reload
