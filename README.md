@@ -1,0 +1,753 @@
+# dotfiles
+
+Personal Fedora Wayland configuration layered over
+[Colloid GTK](https://github.com/vinceliuice/Colloid-gtk-theme) and
+[Colloid KDE](https://github.com/vinceliuice/Colloid-kde) by Vince Liuice.
+Restoration uses personal GitHub forks of both projects so the pinned source
+remains available independently of the upstream repositories.
+
+This is not a standalone theme and does not claim authorship over Colloid. GTK
+supports cascading CSS, so the GTK part of this repository contains only a
+small override. Kvantum cannot inherit another theme in the same way, so the Qt
+variant is produced locally by applying AI-assisted color patches to an
+installed copy of `ColloidNordDark`. The resulting files are modified Colloid
+works and remain subject to Colloid's GPL-3.0 license.
+
+The original files in this repository are published without a license.
+
+## Layout
+
+```text
+dotfiles/   GNU Stow package containing authored configuration
+manifest/   Fedora packages and pinned external revisions
+patches/    Deltas applied to Fedora Sway and installed Colloid assets
+system/     Reviewed files installed outside the home directory
+```
+
+Small, bounded helpers live under `dotfiles/.local/bin` for actions that cannot
+be expressed cleanly in application configuration. Compositors start ordinary
+session programs directly; there is no custom service manager or portability
+framework.
+
+The Stow package also owns the Bash and Zsh startup files, Git configuration,
+Starship prompt, and Nano configuration. Zsh is primary; Bash remains a
+supported fallback.
+
+`manifest/colloid-revisions.env` defines the Colloid fork revisions required by
+the GTK override and Kvantum patches. `manifest/external-revisions.env` defines
+the Nerd Font archive and `nwg-displays` fork revision. Use those revisions for
+a reproducible restoration; update them only as part of a deliberate upgrade.
+
+Sway is composed from independent modules:
+
+```text
+~/.config/sway/config
+├── conf.d/settings.conf
+├── generated/base.conf      patched from /etc/sway/config
+├── conf.d/input.conf
+├── conf.d/keybinds.conf
+├── conf.d/windows.conf
+├── conf.d/theme.conf
+└── conf.d/extensions.conf
+```
+
+The repository contains no wallpaper, swaylock configuration, full replacement
+Sway config, or copied Colloid SVG.
+
+## Fresh Fedora 44 Everything restoration
+
+Start from Fedora Everything with automatic Btrfs partitioning, a network
+connection, and a user allowed to run `sudo`. The restoration is intentionally
+linear: finish each numbered section before continuing.
+
+### 1. Bootstrap and clone
+
+Git and the DNF5 COPR command are the only bootstrap requirements:
+
+```sh
+sudo dnf5 install git dnf5-plugins
+
+mkdir -p ~/.local/src
+git clone https://github.com/topsinoty/dotfiles.git ~/.local/src/dotfiles
+cd ~/.local/src/dotfiles
+```
+
+All remaining relative paths assume the repository root is the current
+directory.
+
+### 2. Enable package sources and install packages
+
+```sh
+sudo dnf5 copr enable atim/starship
+sudo dnf5 copr enable jdxcode/mise
+sudo dnf5 copr enable lihaohong/yazi
+sudo dnf5 copr enable alternateved/keyd
+
+xargs sudo dnf5 install < manifest/fedora-packages.txt
+```
+
+Starship, Mise, Yazi, and keyd use the listed Fedora COPRs.
+[nwg-displays](https://github.com/nwg-piotr/nwg-displays) is authored upstream
+by nwg-piotr. It is installed separately from a pinned revision in the
+[personal fork](https://github.com/topsinoty/nwg-displays) because no current
+Fedora 44 package provides its Niri support.
+
+The configured browser is Google Chrome Stable. Install its signed RPM, which
+also registers Google's update repository:
+
+```sh
+sudo dnf5 install \
+  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+```
+
+### 3. Install pinned external inputs
+
+Load the pinned source revisions:
+
+```sh
+. ./manifest/colloid-revisions.env
+. ./manifest/external-revisions.env
+```
+
+Install the exact [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+JetBrainsMono release used by Foot, Fuzzel, Waybar, GTK, and Sway:
+
+```sh
+font_work=$(mktemp -d)
+font_archive=$font_work/JetBrainsMono.tar.xz
+emoji_font=$font_work/NotoColorEmoji.ttf
+
+curl --fail --location --show-error \
+  --output "$font_archive" \
+  "https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERD_FONTS_VERSION/JetBrainsMono.tar.xz"
+
+printf '%s  %s\n' \
+  "$NERD_FONTS_JETBRAINS_MONO_SHA256" \
+  "$font_archive" | sha256sum --check
+
+curl --fail --location --show-error \
+  --output "$emoji_font" \
+  "https://raw.githubusercontent.com/googlefonts/noto-emoji/$NOTO_EMOJI_REV/fonts/NotoColorEmoji.ttf"
+
+printf '%s  %s\n' \
+  "$NOTO_COLOR_EMOJI_SHA256" \
+  "$emoji_font" | sha256sum --check
+
+tar --extract --xz --file "$font_archive" --directory "$font_work"
+sudo install -d /usr/local/share/fonts/JetBrainsMonoNerdFont
+sudo install -m0644 "$font_work"/JetBrainsMono*.ttf \
+  /usr/local/share/fonts/JetBrainsMonoNerdFont/
+sudo install -Dm0644 "$emoji_font" \
+  /usr/local/share/fonts/NotoColorEmoji/NotoColorEmoji.ttf
+sudo fc-cache --force
+rm -rf "$font_work"
+
+fc-match 'JetBrainsMono Nerd Font Mono' \
+  --format '%{family}\n%{file}\n'
+```
+
+Fetch the pinned Colloid foundations and install only the GTK dark variant and
+the two Kvantum source files used by the local patch:
+
+```sh
+git clone https://github.com/topsinoty/Colloid-gtk-theme.git \
+  ~/.local/src/Colloid-gtk-theme
+git -C ~/.local/src/Colloid-gtk-theme checkout --detach \
+  "$COLLOID_GTK_REV"
+(
+  cd ~/.local/src/Colloid-gtk-theme
+  ./install.sh --color dark
+)
+
+git clone https://github.com/topsinoty/Colloid-kde.git \
+  ~/.local/src/Colloid-kde
+git -C ~/.local/src/Colloid-kde checkout --detach \
+  "$COLLOID_KDE_REV"
+
+mkdir -p ~/.config/Kvantum/ColloidNord
+cp ~/.local/src/Colloid-kde/Kvantum/ColloidNord/ColloidNordDark.kvconfig \
+  ~/.config/Kvantum/ColloidNord/
+cp ~/.local/src/Colloid-kde/Kvantum/ColloidNord/ColloidNordDark.svg \
+  ~/.config/Kvantum/ColloidNord/
+```
+
+Install the pinned `nwg-displays` source after reviewing its short installer:
+
+```sh
+git clone https://github.com/topsinoty/nwg-displays.git \
+  ~/.local/src/nwg-displays
+git -C ~/.local/src/nwg-displays checkout --detach \
+  "$NWG_DISPLAYS_REV"
+
+sed -n '1,240p' ~/.local/src/nwg-displays/install.sh
+(
+  cd ~/.local/src/nwg-displays
+  sudo ./install.sh
+)
+
+nwg-displays --version
+```
+
+The forks preserve the pinned source but do not replace attribution to the
+original projects. Colloid wallpapers and desktop packages are not installed,
+and no third-party assets are copied into this repository. Yazi and its
+official `mount.yazi` plugin continue to use their normal upstream package
+sources rather than personal forks.
+
+Make Zsh the login shell:
+
+```sh
+chsh -s "$(command -v zsh)"
+```
+
+Both shell startup files activate Starship, Zoxide, Fzf, and Mise. Zsh also
+loads autosuggestions and syntax highlighting. Bash and Zsh retain 100,000
+commands in persistent history, which backs Fzf's `Ctrl+R` search across
+sessions.
+
+### 4. Install system integration
+
+Install the system-level Ctrl-Alt-Delete fallback, then start keyd:
+
+```sh
+sudo install -Dm0755 system/libexec/dotfiles-session-rescue \
+  /usr/local/libexec/dotfiles-session-rescue
+sudo install -Dm0644 system/keyd/dotfiles-emergency.conf \
+  /etc/keyd/dotfiles-emergency.conf
+sudo keyd check /etc/keyd/dotfiles-emergency.conf
+sudo systemctl enable --now keyd
+```
+
+keyd receives the chord independently of the compositor. The helper opens
+Wlogout through any responsive Wayland socket, covering Sway and Niri, and
+otherwise asks logind to terminate only the active local graphical session. It
+discovers the seat, session, user, runtime directory, and Wayland socket at
+runtime.
+
+Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
+
+Install the DNF5 and greetd files:
+
+```sh
+if sudo test -e /etc/greetd/config.toml && \
+  ! sudo test -e /etc/greetd/config.toml.before-dotfiles; then
+  sudo cp -a /etc/greetd/config.toml \
+    /etc/greetd/config.toml.before-dotfiles
+fi
+
+sudo install -Dm0644 system/dnf/80-dotfiles.conf \
+  /etc/dnf/libdnf5.conf.d/80-dotfiles.conf
+sudo install -Dm0644 system/greetd/config.toml /etc/greetd/config.toml
+
+if ! grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment; then
+  if sudo test -e /etc/environment; then
+    sudo cp -a /etc/environment /etc/environment.before-dotfiles
+  else
+    sudo install -Dm0644 /dev/null /etc/environment.before-dotfiles
+  fi
+  printf '%s\n' 'QT_STYLE_OVERRIDE=kvantum' | \
+    sudo tee -a /etc/environment >/dev/null
+fi
+
+sudo localectl set-x11-keymap 'us,ee' '' '' 'grp:alt_shift_toggle'
+sudo systemctl enable --now NetworkManager bluetooth power-profiles-daemon
+```
+
+The DNF5 drop-in changes only the default prompt answer and parallel download
+count. Tuigreet discovers the installed session desktop files and remembers the
+last session per user. Before enabling greetd, disable the machine's current
+display manager, then enable greetd for the next boot:
+
+```sh
+sudo systemctl enable greetd
+sudo systemctl set-default graphical.target
+```
+
+Do not stop the active display manager from inside the graphical session.
+
+### 5. Configure recovery and boot presentation
+
+These recovery commands require separate Btrfs subvolumes for `/` and `/home`,
+as created by Fedora's automatic Btrfs partitioning. Snapper protects against
+bad upgrades and accidental file changes, while a monthly scrub detects
+damaged data. Local snapshots are recovery points, not backups against drive
+loss.
+
+The package manifest already installs Snapper, Btrfs Maintenance, Btrfs
+Assistant, and Fedora's upstream Plymouth spinner.
+
+Create each Snapper configuration once, then apply bounded retention:
+
+```sh
+sudo snapper -c root create-config /
+sudo snapper -c home create-config /home
+
+for config in root home; do
+  sudo snapper -c "$config" set-config \
+    'TIMELINE_CREATE=yes' \
+    'TIMELINE_CLEANUP=yes' \
+    'NUMBER_CLEANUP=yes' \
+    'NUMBER_LIMIT=10' \
+    'NUMBER_LIMIT_IMPORTANT=5' \
+    'TIMELINE_LIMIT_HOURLY=6' \
+    'TIMELINE_LIMIT_DAILY=7' \
+    'TIMELINE_LIMIT_WEEKLY=4' \
+    'TIMELINE_LIMIT_MONTHLY=3' \
+    'TIMELINE_LIMIT_YEARLY=0' \
+    'SPACE_LIMIT=0.2' \
+    'FREE_LIMIT=0.2'
+done
+
+sudo systemctl enable --now snapper-timeline.timer snapper-cleanup.timer
+sudo systemctl enable --now btrfs-scrub.timer
+```
+
+Confirm the configurations, timers, and current filesystem usage:
+
+```sh
+sudo snapper list-configs
+sudo snapper -c root list
+sudo snapper -c home list
+systemctl status \
+  snapper-timeline.timer \
+  snapper-cleanup.timer \
+  btrfs-scrub.timer
+sudo btrfs filesystem usage /
+```
+
+Create an important recovery point before a risky manual change:
+
+```sh
+sudo snapper -c root create \
+  --description 'before manual system change' \
+  --cleanup-algorithm number \
+  --userdata important=yes
+```
+
+The repository does not add snapshot entries to GRUB. Fedora's rescue kernel
+remains independent, and snapshots can be inspected or restored with Snapper,
+Btrfs Assistant, or a Fedora live USB without making the bootloader depend on
+the snapshot tool.
+
+Install the small GRUB presentation layer, select Fedora's stock Plymouth
+spinner, then regenerate their derived files:
+
+```sh
+sudo install -Dm0644 system/grub/80-dotfiles.cfg \
+  /etc/default/grub.d/80-dotfiles.cfg
+sudo install -Dm0644 system/grub/theme.txt \
+  /boot/grub2/themes/dotfiles/theme.txt
+
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo plymouth-set-default-theme -R spinner
+```
+
+Validate the generated boot configuration and selected Plymouth theme:
+
+```sh
+sudo grub2-script-check /boot/grub2/grub.cfg
+test "$(plymouth-set-default-theme)" = spinner
+```
+
+The GRUB drop-in changes only presentation. It leaves Fedora's BLS, saved
+default, timeout, kernel command line, and rescue image behavior untouched.
+Plymouth remains an unmodified Fedora package rather than a locally maintained
+renderer.
+
+### 6. Back up conflicting files on an existing home
+
+A fresh Fedora home has no conflicts and can skip this section. When applying
+the repository to an existing home, run this backup before sections 3 and 7.
+Stow will not overwrite existing application configs.
+
+```sh
+mkdir -p ~/.local/state/dotfiles/manual-backup
+
+for directory in sway niri gtk-3.0 gtk-4.0 Kvantum; do
+  source=$HOME/.config/$directory
+  [ -e "$source" ] && cp -a "$source" ~/.local/state/dotfiles/manual-backup/
+done
+
+# Preserve shell and tool files that would conflict with Stow.
+backup=$HOME/.local/state/dotfiles/manual-backup
+
+for file in .bashrc .zshrc .gitconfig .nanorc; do
+  source=$HOME/$file
+  [ -e "$source" ] && mv "$source" "$backup/$file"
+done
+
+mkdir -p "$backup/.config"
+dconf dump /org/gnome/desktop/interface/ \
+  > "$backup/gnome-interface.dconf"
+
+[ ! -e "$HOME/.config/starship.toml" ] || \
+  mv "$HOME/.config/starship.toml" "$backup/.config/starship.toml"
+```
+
+### 7. Stow authored files
+
+From the repository root:
+
+```sh
+stow --no-folding --target="$HOME" dotfiles
+ya pkg install
+mkdir -p ~/.config/dotfiles/hardware.d
+touch ~/.config/sway/outputs ~/.config/sway/workspaces \
+  ~/.config/dotfiles/hardware.d/sway.conf \
+  ~/.config/niri/dotfiles-hardware.kdl
+```
+
+`--no-folding` is required so generated files cannot be written through a
+directory symlink into the repository.
+
+Yazi installs the pinned official `mount.yazi` package into its generated local
+plugin directory. Press `M` in Yazi to mount, unmount, or eject through UDisks.
+PCManFM uses the same UDisks/GVfs state for graphical device, Trash, MTP,
+camera, and network-location management. Neither file manager starts a separate
+automount daemon.
+
+### 8. Build the compositor bases
+
+The checked-in Sway config is only an include graph. Build its base from the
+currently installed Fedora config and apply the small patch:
+
+```sh
+mkdir -p ~/.config/sway/generated
+cp /etc/sway/config ~/.config/sway/generated/base.conf
+patch ~/.config/sway/generated/base.conf < patches/sway-stock.patch
+```
+
+The patch removes exactly three stock declarations that local modules replace:
+the launcher variable, wallpaper, and built-in swaybar. Fedora's remaining
+settings and keybindings stay unchanged.
+
+`nwg-displays` writes hardware-specific output files locally. Sway includes its
+generated `~/.config/sway/outputs` and `~/.config/sway/workspaces` files; Niri
+uses `~/.config/niri/monitor.kdl` and adds its native include itself. Generate
+them only when the display layout needs changing. They are not repository
+inputs.
+
+Create Niri's complete base from the version-matched packaged example, then add
+the dotfiles include as its final top-level line:
+
+```sh
+cp /usr/share/doc/niri/default-config.kdl ~/.config/niri/config.kdl
+printf '\ninclude "dotfiles.kdl"\n' >> ~/.config/niri/config.kdl
+```
+
+The resulting final line is:
+
+```kdl
+include "dotfiles.kdl"
+```
+
+The final position lets the small dotfiles binding fragment override conflicting
+stock bindings. `dotfiles.kdl` is only an include graph: Niri keybindings and
+session extensions live in separate `conf.d` fragments, and new fragments are
+added only when an actual override exists. Niri validates the missing local
+hardware include as optional. Sway hardware exceptions may be placed locally in
+`~/.config/dotfiles/hardware.d/sway.conf`.
+
+### 9. Select Colloid and load the GTK override
+
+Select the installed Colloid GTK 3 theme and the existing system icon and
+cursor themes:
+
+```sh
+gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+```
+
+GTK 4 does not select named GTK themes. Generate its Colloid foundation from
+the installed theme, remove the three colors owned by the override, then load
+the small authored layer:
+
+```sh
+mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
+
+cp ~/.themes/Colloid-Dark/gtk-4.0/gtk.css \
+  ~/.config/gtk-4.0/gtk-colloid.css
+sed -i \
+  -e '/^@define-color accent_bg_color /d' \
+  -e '/^@define-color accent_fg_color /d' \
+  -e '/^@define-color accent_color /d' \
+  ~/.config/gtk-4.0/gtk-colloid.css
+
+printf '%s\n' '@import url("../dotfiles/gtk.css");' \
+  > ~/.config/gtk-3.0/gtk.css
+printf '%s\n' \
+  '@import url("gtk-colloid.css");' \
+  '@import url("../dotfiles/gtk.css");' \
+  > ~/.config/gtk-4.0/gtk.css
+```
+
+The GTK 3 theme provides the complete foundation through theme selection. GTK
+4's generated `gtk-colloid.css` remains local and is not committed. Both load
+this authored override:
+
+```css
+@import url("../dotfiles/gtk.css");
+```
+
+### 10. Build the local Kvantum variant
+
+Copy the installed Colloid files, then apply only the recorded deltas:
+
+```sh
+mkdir -p ~/.config/Kvantum/ColloidNordDark-dotfiles
+cp ~/.config/Kvantum/ColloidNord/ColloidNordDark.kvconfig \
+  ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconfig
+cp ~/.config/Kvantum/ColloidNord/ColloidNordDark.svg \
+  ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg
+patch ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconfig \
+  < patches/kvantum-config.patch
+patch ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg \
+  < patches/kvantum-svg.patch
+printf '[General]\ntheme=ColloidNordDark-dotfiles\n' \
+  > ~/.config/Kvantum/kvantum.kvconfig
+```
+
+These generated files are intentionally outside Git.
+
+### 11. Configure user choices and validate before login
+
+Apply the browser's existing desktop entry only to web content, and configure
+the optional location-dependent night light:
+
+```sh
+dotfiles-mime-setup google-chrome.desktop
+dotfiles-location-setup
+```
+
+The location command performs one bounded IP lookup, asks for confirmation,
+supports manual fallback, and stores only coordinates in the local untracked
+`~/.config/dotfiles/location.env`. Wlsunset remains off when that file is absent.
+
+Sway and Niri start Mako, Swayidle, playerctld, clipboard watchers, Blueman, the
+MATE Polkit authentication agent, and optional Wlsunset directly. Their idle
+files differ only where each compositor's native display-power command differs.
+Waybar configurations share presentation and ordinary modules while retaining
+native workspace, window, and language modules.
+
+```sh
+xargs rpm -q < manifest/fedora-packages.txt
+test "$(fc-match 'JetBrainsMono Nerd Font Mono' --format '%{family[0]}')" = \
+  'JetBrainsMono Nerd Font Mono'
+test "$(xdg-mime query default x-scheme-handler/https)" = \
+  google-chrome.desktop
+test "$(gsettings get org.gnome.desktop.interface gtk-theme)" = \
+  "'Colloid-Dark'"
+grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment
+
+foot --check-config --config="$HOME/.config/foot/foot.ini"
+fuzzel --check-config --config="$HOME/.config/fuzzel/fuzzel.ini"
+python3 -m json.tool ~/.config/waybar/common.jsonc >/dev/null
+python3 -m json.tool ~/.config/waybar/sway.jsonc >/dev/null
+python3 -m json.tool ~/.config/waybar/niri.jsonc >/dev/null
+python3 -c 'import pathlib, tomllib; tomllib.loads(pathlib.Path.home().joinpath(".config/starship.toml").read_text())'
+bash -n ~/.bashrc
+zsh -n ~/.zshrc
+nano --rcfile ~/.nanorc --version >/dev/null
+yazi --debug >/dev/null
+niri validate
+dnf5 --dump-main-config | grep -E '^(defaultyes|max_parallel_downloads) ='
+sudo keyd check /etc/keyd/dotfiles-emergency.conf
+systemctl is-enabled \
+  greetd \
+  keyd \
+  bluetooth \
+  power-profiles-daemon \
+  snapper-timeline.timer \
+  snapper-cleanup.timer \
+  btrfs-scrub.timer
+```
+
+Inspect desktop helper decisions with:
+
+```sh
+journalctl -t dotfiles-microphone \
+  -t dotfiles-wlsunset
+```
+
+Fastfetch is configured but never runs automatically. MPV is Yazi's explicit
+audio/video opener and has no forced starting volume. PCManFM is available from
+Fuzzel as a Colloid-styled GUI alternative but never manages the desktop or
+wallpaper.
+
+Reboot after all static checks pass:
+
+```sh
+sudo reboot
+```
+
+### 12. Validate the graphical session
+
+Tuigreet discovers both Sway and Niri from their packaged session files. Log
+into either one, then confirm the shared desktop services:
+
+```sh
+systemctl --user is-active \
+  xdg-desktop-portal.service \
+  xdg-desktop-portal-gtk.service
+
+pgrep -af \
+  'mako|swayidle|playerctld|blueman-applet|polkit-mate-authentication-agent-1'
+```
+
+Under Sway, validate and reload its active configuration:
+
+```sh
+swaymsg -t get_version
+sway -C -c ~/.config/sway/config
+swaymsg reload
+```
+
+Under Niri, confirm that its IPC is available:
+
+```sh
+niri msg version
+```
+
+The location file is optional and machine-specific. `nwg-displays` is also
+on-demand: run it only when output layout needs configuring, then validate the
+generated file with `sway -C` or `niri validate`.
+
+## Updating after Fedora or Colloid changes
+
+Re-copy `/etc/sway/config` or the installed Colloid assets and reapply the
+corresponding patch. If `patch` rejects a hunk, inspect the upstream change and
+refresh that patch instead of forcing it. When adopting a new Colloid release,
+update `manifest/colloid-revisions.env` in the same commit as the reviewed
+patches. Update `manifest/external-revisions.env` only after verifying the Nerd
+Font checksum or reviewing the `nwg-displays` installer at the new revision.
+Do not move pins merely because upstream has advanced.
+
+## Reverting
+
+Remove the generated package and integration state before unstowing:
+
+```sh
+ya pkg delete yazi-rs/plugins:mount
+
+rm -f ~/.config/sway/generated/base.conf \
+  ~/.config/sway/outputs \
+  ~/.config/sway/workspaces \
+  ~/.config/dotfiles/hardware.d/sway.conf \
+  ~/.config/niri/config.kdl \
+  ~/.config/niri/dotfiles-hardware.kdl \
+  ~/.config/niri/monitor.kdl \
+  ~/.config/gtk-3.0/gtk.css \
+  ~/.config/gtk-4.0/gtk.css \
+  ~/.config/gtk-4.0/gtk-colloid.css \
+  ~/.config/dotfiles/location.env
+
+rm -f ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconfig \
+  ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg
+rmdir ~/.config/Kvantum/ColloidNordDark-dotfiles
+
+stow --delete --no-folding --target="$HOME" dotfiles
+```
+
+Stow may leave empty directories created by `--no-folding`; they contain no
+managed files. Restore any files saved from an existing home:
+
+```sh
+backup=$HOME/.local/state/dotfiles/manual-backup
+
+for directory in sway niri gtk-3.0 gtk-4.0 Kvantum; do
+  [ ! -e "$backup/$directory" ] || \
+    cp -a "$backup/$directory" ~/.config/
+done
+
+for file in .bashrc .zshrc .gitconfig .nanorc; do
+  [ ! -e "$backup/$file" ] || cp -a "$backup/$file" "$HOME/$file"
+done
+
+[ ! -e "$backup/.config/starship.toml" ] || \
+  cp -a "$backup/.config/starship.toml" ~/.config/starship.toml
+
+[ ! -s "$backup/gnome-interface.dconf" ] || \
+  dconf load /org/gnome/desktop/interface/ \
+    < "$backup/gnome-interface.dconf"
+```
+
+Restoring the Kvantum directory also restores its previous selected theme.
+
+Before disabling greetd, enable the display manager that should handle the next
+login. Then remove the system-owned additions:
+
+```sh
+sudo systemctl disable greetd keyd
+sudo systemctl disable --now \
+  snapper-timeline.timer snapper-cleanup.timer btrfs-scrub.timer
+
+sudo rm /etc/dnf/libdnf5.conf.d/80-dotfiles.conf \
+  /etc/keyd/dotfiles-emergency.conf \
+  /usr/local/libexec/dotfiles-session-rescue \
+  /etc/default/grub.d/80-dotfiles.cfg \
+  /boot/grub2/themes/dotfiles/theme.txt
+
+sudo rmdir /boot/grub2/themes/dotfiles
+
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo plymouth-set-default-theme --reset -R
+
+if sudo test -e /etc/environment.before-dotfiles; then
+  sudo mv /etc/environment.before-dotfiles /etc/environment
+fi
+
+sudo localectl set-x11-keymap us
+
+if sudo test -e /etc/greetd/config.toml.before-dotfiles; then
+  sudo mv /etc/greetd/config.toml.before-dotfiles /etc/greetd/config.toml
+else
+  sudo rm /etc/greetd/config.toml
+fi
+```
+
+Remove the source-installed display utility and system-wide fonts only when
+they are not used by another configuration:
+
+```sh
+if [ -d ~/.local/src/nwg-displays ]; then
+  (
+    cd ~/.local/src/nwg-displays
+    sudo ./uninstall.sh
+  )
+fi
+
+sudo rm -f \
+  /usr/bin/nwg-displays-apply \
+  /usr/bin/nwg-displays-toggle-wallpapers \
+  /usr/share/applications/nwg-displays.desktop \
+  /usr/share/pixmaps/nwg-displays.svg
+sudo rm -rf \
+  /usr/share/doc/nwg-displays \
+  /usr/share/licenses/nwg-displays \
+  /usr/local/share/fonts/JetBrainsMonoNerdFont \
+  /usr/local/share/fonts/NotoColorEmoji
+sudo fc-cache --force
+```
+
+Delete the `root` or `home` Snapper configuration only after reviewing and
+removing any snapshots that are still needed. Removing the repository does not
+silently destroy recovery points.
+
+Disable `bluetooth` or `power-profiles-daemon` only if this setup enabled them
+on a machine where they were previously disabled.
+
+## Migrating an existing configuration
+
+Before Stowing:
+
+1. Restore the complete Colloid GTK stylesheet as the GTK foundation.
+2. Remove copied theme directories and their GTK imports.
+3. Remove wallpaper references and swaylock configuration.
+4. Back up and remove standalone Foot, Fuzzel, Mako, Waybar, Yazi, and gtklock
+   files that would conflict with Stow.
+5. Follow the Sway, GTK, and Kvantum patch steps above.
+
+Keep generated output in `~/.config`; the repository contains only authored
+configuration and reviewable patches.
