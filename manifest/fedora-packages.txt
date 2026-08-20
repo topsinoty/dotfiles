@@ -56,6 +56,7 @@ fastfetch
 pcmanfm
 udisks2
 util-linux
+procps-ng
 btrfs-progs
 gvfs
 gvfs-mtp

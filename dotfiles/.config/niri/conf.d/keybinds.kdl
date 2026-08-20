@@ -1,6 +1,98 @@
 binds {
+    Ctrl+Question hotkey-overlay-title="Show keyboard shortcuts" {
+        show-hotkey-overlay
+    }
+
+    Mod+Return hotkey-overlay-title="Open a terminal" {
+        spawn "foot"
+    }
+    Mod+Space hotkey-overlay-title="Open the application launcher" {
+        spawn "fuzzel"
+    }
+    Mod+B hotkey-overlay-title="Open the browser" {
+        spawn-sh "exec \"$HOME/.local/bin/dotfiles-open-browser\""
+    }
+    Mod+V hotkey-overlay-title="Open clipboard history" {
+        spawn-sh "exec \"$HOME/.local/bin/dotfiles-clipboard\""
+    }
+    Mod+Period hotkey-overlay-title="Open the emoji picker" {
+        spawn-sh "rofimoji --selector fuzzel --selector-args='--font=Noto Emoji:size=10,JetBrainsMono Nerd Font Mono:size=10' --clipboarder wl-copy --action copy"
+    }
+
     Super+Alt+L hotkey-overlay-title="Lock the screen" {
         spawn "gtklock" "-d"
+    }
+
+    Print hotkey-overlay-title="Capture the screen" {
+        spawn-sh "exec \"$HOME/.local/bin/dotfiles-screenshot\" full"
+    }
+    Mod+Shift+S hotkey-overlay-title="Capture a region" {
+        spawn-sh "exec \"$HOME/.local/bin/dotfiles-screenshot\" region"
+    }
+
+    Mod+Shift+Q repeat=false hotkey-overlay-title="Close the focused window" {
+        close-window
+    }
+
+    Mod+Tab hotkey-overlay-title="Focus the next workspace" {
+        focus-workspace-down
+    }
+    Mod+Shift+Tab hotkey-overlay-title="Focus the previous workspace" {
+        focus-workspace-up
+    }
+    Alt+Tab hotkey-overlay-title="Return to the last workspace" {
+        focus-workspace-previous
+    }
+
+    Mod+0 hotkey-overlay-title="Focus workspace 10" {
+        focus-workspace 10
+    }
+    Mod+Shift+1 hotkey-overlay-title="Move the window to workspace 1" {
+        move-window-to-workspace 1
+    }
+    Mod+Shift+2 hotkey-overlay-title="Move the window to workspace 2" {
+        move-window-to-workspace 2
+    }
+    Mod+Shift+3 hotkey-overlay-title="Move the window to workspace 3" {
+        move-window-to-workspace 3
+    }
+    Mod+Shift+4 hotkey-overlay-title="Move the window to workspace 4" {
+        move-window-to-workspace 4
+    }
+    Mod+Shift+5 hotkey-overlay-title="Move the window to workspace 5" {
+        move-window-to-workspace 5
+    }
+    Mod+Shift+6 hotkey-overlay-title="Move the window to workspace 6" {
+        move-window-to-workspace 6
+    }
+    Mod+Shift+7 hotkey-overlay-title="Move the window to workspace 7" {
+        move-window-to-workspace 7
+    }
+    Mod+Shift+8 hotkey-overlay-title="Move the window to workspace 8" {
+        move-window-to-workspace 8
+    }
+    Mod+Shift+9 hotkey-overlay-title="Move the window to workspace 9" {
+        move-window-to-workspace 9
+    }
+    Mod+Shift+0 hotkey-overlay-title="Move the window to workspace 10" {
+        move-window-to-workspace 10
+    }
+
+    Mod+U hotkey-overlay-title="Toggle the focused window floating" {
+        toggle-window-floating
+    }
+    Mod+Shift+U hotkey-overlay-title="Switch between tiled and floating windows" {
+        switch-focus-between-floating-and-tiling
+    }
+
+    XF86AudioMute allow-when-locked=true {
+        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"
     }
 
     XF86AudioPlay allow-when-locked=true {
