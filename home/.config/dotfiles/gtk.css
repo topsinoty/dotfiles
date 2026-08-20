@@ -16,7 +16,7 @@
 @define-color borders #0A1118;
 
 * {
-  font-family: "JetBrainsMono Nerd Font Mono";
+  font-family: "Noto Sans", sans-serif;
 }
 
 window, dialog, headerbar, .titlebar, popover > contents, menu, menuitem,

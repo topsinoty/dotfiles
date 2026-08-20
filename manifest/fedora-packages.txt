@@ -19,9 +19,11 @@ stow
 patch
 yazi
 git
+code
 python3
 python-unversioned-command
 fontconfig
+google-noto-sans-fonts
 sassc
 gtk-murrine-engine
 gtk3

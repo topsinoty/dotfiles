@@ -18,14 +18,15 @@ The original files in this repository are published without a license.
 ## Layout
 
 ```text
-dotfiles/   GNU Stow package containing authored configuration
+home/       GNU Stow package mirroring the user's home directory
+etc/        Reviewed files installed under /etc
+usr/        Reviewed files installed under /usr
 manifest/   Fedora packages and pinned external revisions
 patches/    Deltas applied to Fedora compositor and Colloid assets
-profiles/   Copy-only hardware profiles for matching machines
-system/     Reviewed files installed outside the home directory
+profiles/   Optional filesystem-shaped hardware overlays
 ```
 
-Small, bounded helpers live under `dotfiles/.local/bin` for actions that cannot
+Small, bounded helpers live under `home/.local/bin` for actions that cannot
 be expressed cleanly in application configuration. Compositors start ordinary
 session programs directly; there is no custom service manager or portability
 framework.
@@ -69,9 +70,8 @@ Git and the DNF COPR command are the only bootstrap requirements:
 ```sh
 sudo dnf install git dnf5-plugins
 
-mkdir -p ~/.local/src
-git clone https://github.com/topsinoty/dotfiles.git ~/.local/src/dotfiles
-cd ~/.local/src/dotfiles
+git clone https://github.com/topsinoty/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ```
 
 All remaining relative paths assume the repository root is the current
@@ -85,10 +85,16 @@ sudo dnf copr enable jdxcode/mise
 sudo dnf copr enable lihaohong/yazi
 sudo dnf copr enable alternateved/keyd
 
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" |
+  sudo tee /etc/yum.repos.d/vscode.repo >/dev/null
+
+dnf check-update || test $? -eq 100
 xargs sudo dnf install < manifest/fedora-packages.txt
 ```
 
-Starship, Mise, Yazi, and keyd use the listed Fedora COPRs.
+Starship, Mise, Yazi, and keyd use the listed Fedora COPRs. Visual Studio Code
+uses Microsoft's signed RPM repository.
 [nwg-displays](https://github.com/nwg-piotr/nwg-displays) is authored upstream
 by nwg-piotr. It is installed separately from a pinned revision in the
 [personal fork](https://github.com/topsinoty/nwg-displays), which provides the
@@ -253,9 +259,9 @@ sessions.
 Install the system-level Ctrl-Alt-Delete fallback, then start keyd:
 
 ```sh
-sudo install -Dm0755 system/libexec/dotfiles-session-rescue \
+sudo install -Dm0755 usr/local/libexec/dotfiles-session-rescue \
   /usr/local/libexec/dotfiles-session-rescue
-sudo install -Dm0644 system/keyd/dotfiles-emergency.conf \
+sudo install -Dm0644 etc/keyd/dotfiles-emergency.conf \
   /etc/keyd/dotfiles-emergency.conf
 sudo keyd check /etc/keyd/dotfiles-emergency.conf
 sudo systemctl enable --now keyd
@@ -278,10 +284,10 @@ if sudo test -e /etc/greetd/config.toml && \
     /etc/greetd/config.toml.before-dotfiles
 fi
 
-sudo install -Dm0644 system/dnf/80-dotfiles.conf \
+sudo install -Dm0644 etc/dnf/libdnf5.conf.d/80-dotfiles.conf \
   /etc/dnf/libdnf5.conf.d/80-dotfiles.conf
-sudo install -Dm0644 system/greetd/config.toml /etc/greetd/config.toml
-sudo install -Dm0644 system/environment/80-dotfiles.conf \
+sudo install -Dm0644 etc/greetd/config.toml /etc/greetd/config.toml
+sudo install -Dm0644 etc/environment.d/80-dotfiles.conf \
   /etc/environment.d/80-dotfiles.conf
 
 sudo localectl set-x11-keymap 'us,ee' '' '' 'grp:alt_shift_toggle'
@@ -429,11 +435,13 @@ Fedora package.
 From the repository root:
 
 ```sh
-stow --no-folding --target="$HOME" dotfiles
+stow --no-folding --target="$HOME" home
+dotfiles-vscode-setup apply
 ya pkg install
 mkdir -p ~/.config/dotfiles/hardware.d
-install -Dm0644 profiles/laptop/sway-outputs.conf ~/.config/sway/outputs
-install -Dm0644 profiles/laptop/niri-hardware.kdl \
+install -Dm0644 profiles/laptop/home/.config/sway/outputs \
+  ~/.config/sway/outputs
+install -Dm0644 profiles/laptop/home/.config/niri/dotfiles-hardware.kdl \
   ~/.config/niri/dotfiles-hardware.kdl
 touch ~/.config/sway/workspaces ~/.config/dotfiles/hardware.d/sway.conf
 ```
@@ -442,6 +450,13 @@ touch ~/.config/sway/workspaces ~/.config/dotfiles/hardware.d/sway.conf
 directory symlink into the repository. The laptop profile records the built-in
 `eDP-1` display at scale 1. Skip its two `install` commands on other hardware
 and let `nwg-displays` create local output configuration instead.
+
+The VS Code helper recursively merges the small authored settings layer into
+the existing user settings instead of replacing them. The layer follows the
+desktop's dark-mode preference, shares the GTK, Foot, Sway, and Niri palette,
+and selects the pinned JetBrainsMono Nerd Font. The helper keeps a one-time copy
+of the pre-merge settings under `~/.local/state/dotfiles/vscode` for reversal;
+profiles, extensions, and transient state remain owned by VS Code.
 
 Yazi installs the pinned official `mount.yazi` package into its generated local
 plugin directory. Press `M` in Yazi to mount, unmount, or eject through UDisks.
@@ -492,6 +507,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
 ```
 
 GTK 4 does not select named GTK themes. Generate its Colloid foundation from
@@ -558,7 +574,11 @@ test "$(xdg-mime query default x-scheme-handler/https)" = \
   google-chrome.desktop
 test "$(gsettings get org.gnome.desktop.interface gtk-theme)" = \
   "'Colloid-Dark'"
+test "$(gsettings get org.gnome.desktop.interface font-name)" = \
+  "'Noto Sans 11'"
 grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment.d/80-dotfiles.conf
+python3 -m json.tool ~/.config/dotfiles/vscode-settings.json >/dev/null
+python3 -m json.tool ~/.config/Code/User/settings.json >/dev/null
 
 foot --check-config --config="$HOME/.config/foot/foot.ini"
 fuzzel --check-config --config="$HOME/.config/fuzzel/fuzzel.ini"
@@ -646,6 +666,7 @@ Remove the generated package and integration state before unstowing:
 
 ```sh
 ya pkg delete yazi-rs/plugins:mount
+dotfiles-vscode-setup restore
 
 rm -f ~/.config/sway/generated/base.conf \
   ~/.config/sway/outputs \
@@ -661,7 +682,7 @@ rm -f ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconf
   ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg
 rmdir ~/.config/Kvantum/ColloidNordDark-dotfiles
 
-stow --delete --no-folding --target="$HOME" dotfiles
+stow --delete --no-folding --target="$HOME" home
 ```
 
 Stow may leave empty directories created by `--no-folding`; they contain no

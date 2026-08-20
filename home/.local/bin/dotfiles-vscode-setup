@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# Merge the authored VS Code layer without owning the complete user settings.
+set -eu
+
+config_home=${XDG_CONFIG_HOME:-"$HOME/.config"}
+state_home=${XDG_STATE_HOME:-"$HOME/.local/state"}
+overlay=$config_home/dotfiles/vscode-settings.json
+settings_dir=$config_home/Code/User
+settings=$settings_dir/settings.json
+state_dir=$state_home/dotfiles/vscode
+original=$state_dir/settings.json
+absent=$state_dir/settings-was-absent
+
+apply_overlay()
+{
+    test -r "$overlay"
+    jq empty "$overlay" >/dev/null
+    mkdir -p "$settings_dir" "$state_dir"
+
+    if [ ! -e "$original" ] && [ ! -e "$absent" ]; then
+        if [ -e "$settings" ]; then
+            jq empty "$settings" >/dev/null
+            cp --preserve=mode,timestamps "$settings" "$original"
+        else
+            : > "$absent"
+        fi
+    fi
+
+    temporary=$(mktemp "$settings_dir/.settings.json.XXXXXX")
+    trap 'rm -f "$temporary"' EXIT HUP INT TERM
+
+    if [ -e "$settings" ]; then
+        jq --slurp '.[0] * .[1]' "$settings" "$overlay" > "$temporary"
+    else
+        jq '.' "$overlay" > "$temporary"
+    fi
+
+    chmod 0644 "$temporary"
+    mv "$temporary" "$settings"
+    trap - EXIT HUP INT TERM
+    printf 'Merged VS Code settings into %s\n' "$settings"
+}
+
+restore_settings()
+{
+    if [ -e "$original" ]; then
+        mkdir -p "$settings_dir"
+        cp --preserve=mode,timestamps "$original" "$settings"
+    elif [ -e "$absent" ]; then
+        rm -f "$settings"
+    else
+        printf '%s\n' 'No saved VS Code settings state found' >&2
+        exit 1
+    fi
+
+    rm -f "$original" "$absent"
+    rmdir "$state_dir" 2>/dev/null || true
+    printf 'Restored the pre-dotfiles VS Code settings\n'
+}
+
+case ${1:-apply} in
+    apply)
+        apply_overlay
+        ;;
+    restore)
+        restore_settings
+        ;;
+    *)
+        printf 'usage: %s [apply|restore]\n' "$0" >&2
+        exit 2
+        ;;
+esac
