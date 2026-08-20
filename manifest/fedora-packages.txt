@@ -5,7 +5,6 @@ xwayland-satellite
 swayidle
 wireplumber
 pipewire-utils
-wayland-utils
 waybar
 wlogout
 foot
@@ -56,6 +55,7 @@ fastfetch
 pcmanfm
 udisks2
 util-linux
+procps-ng
 btrfs-progs
 gvfs
 gvfs-mtp
@@ -65,6 +65,7 @@ blueman
 bluez
 power-profiles-daemon
 mate-polkit
+gnome-keyring-pam
 kvantum
 kvantum-qt5
 xdg-desktop-portal
@@ -83,4 +84,6 @@ snapper
 btrfsmaintenance
 btrfs-assistant
 grub2-tools
+grub2-tools-extra
+file
 plymouth-theme-spinner

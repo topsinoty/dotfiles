@@ -1,3 +1,7 @@
+include "conf.d/settings.kdl"
+include "conf.d/input.kdl"
 include "conf.d/keybinds.kdl"
+include "conf.d/windows.kdl"
+include "conf.d/theme.kdl"
 include "conf.d/extensions.kdl"
 include optional=true "dotfiles-hardware.kdl"

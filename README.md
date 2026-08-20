@@ -20,7 +20,8 @@ The original files in this repository are published without a license.
 ```text
 dotfiles/   GNU Stow package containing authored configuration
 manifest/   Fedora packages and pinned external revisions
-patches/    Deltas applied to Fedora Sway and installed Colloid assets
+patches/    Deltas applied to Fedora compositor and Colloid assets
+profiles/   Copy-only hardware profiles for matching machines
 system/     Reviewed files installed outside the home directory
 ```
 
@@ -35,9 +36,9 @@ supported fallback.
 
 `manifest/colloid-revisions.env` defines the Colloid fork revisions required by
 the GTK override and Kvantum patches. `manifest/external-revisions.env` defines
-the external font inputs and `nwg-displays` fork revision. Use those revisions
-for a reproducible restoration; update them only as part of a deliberate
-upgrade.
+the external font inputs, `nwg-displays` fork, and Argon GRUB artwork revisions.
+Use those revisions for a reproducible restoration; update them only as part of
+a deliberate upgrade.
 
 Sway is composed from independent modules:
 
@@ -55,11 +56,11 @@ Sway is composed from independent modules:
 The repository contains no wallpaper, swaylock configuration, full replacement
 Sway config, or copied Colloid SVG.
 
-## Fresh Fedora 44 Everything restoration
+## Install on Fedora 44 Everything
 
 Start from Fedora Everything with automatic Btrfs partitioning, a network
-connection, and a user allowed to run `sudo`. The restoration is intentionally
-linear: finish each numbered section before continuing.
+connection, and a user allowed to run `sudo`. Complete the numbered sections in
+order.
 
 ### 1. Bootstrap and clone
 
@@ -90,8 +91,8 @@ xargs sudo dnf install < manifest/fedora-packages.txt
 Starship, Mise, Yazi, and keyd use the listed Fedora COPRs.
 [nwg-displays](https://github.com/nwg-piotr/nwg-displays) is authored upstream
 by nwg-piotr. It is installed separately from a pinned revision in the
-[personal fork](https://github.com/topsinoty/nwg-displays) because no current
-Fedora 44 package provides its Niri support.
+[personal fork](https://github.com/topsinoty/nwg-displays), which provides the
+required Niri support.
 
 The configured browser is Google Chrome Stable. Install its signed RPM, which
 also registers Google's update repository:
@@ -218,6 +219,18 @@ sed -n '1,240p' ~/.local/src/nwg-displays/install.sh
 nwg-displays --version
 ```
 
+Fetch the pinned GPL-3.0
+[Argon GRUB theme](https://github.com/stuarthayhurst/argon-grub-theme) source
+from its [personal fork](https://github.com/topsinoty/argon-grub-theme). Only
+the upstream installer and its 1080p `grey` design are used:
+
+```sh
+git clone https://github.com/topsinoty/argon-grub-theme.git \
+  ~/.local/src/argon-grub-theme
+git -C ~/.local/src/argon-grub-theme checkout --detach \
+  "$ARGON_GRUB_REV"
+```
+
 The forks preserve the pinned source but do not replace attribution to the
 original projects. Colloid wallpapers and desktop packages are not installed,
 and no third-party assets are copied into this repository. Yazi and its
@@ -248,11 +261,11 @@ sudo keyd check /etc/keyd/dotfiles-emergency.conf
 sudo systemctl enable --now keyd
 ```
 
-keyd receives the chord independently of the compositor. The helper opens
-Wlogout through any responsive Wayland socket, covering Sway and Niri, and
-otherwise asks logind to terminate only the active local graphical session. It
-discovers the seat, session, user, runtime directory, and Wayland socket at
-runtime.
+keyd receives the chord independently of the compositor. The helper asks a
+responsive Sway or Niri instance to start Wlogout inside the active graphical
+session. If neither supported compositor responds, it asks logind to terminate
+only that session. It discovers the seat, session, user, runtime directory, and
+compositor socket at runtime.
 
 Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
 
@@ -268,16 +281,8 @@ fi
 sudo install -Dm0644 system/dnf/80-dotfiles.conf \
   /etc/dnf/libdnf5.conf.d/80-dotfiles.conf
 sudo install -Dm0644 system/greetd/config.toml /etc/greetd/config.toml
-
-if ! grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment; then
-  if sudo test -e /etc/environment; then
-    sudo cp -a /etc/environment /etc/environment.before-dotfiles
-  else
-    sudo install -Dm0644 /dev/null /etc/environment.before-dotfiles
-  fi
-  printf '%s\n' 'QT_STYLE_OVERRIDE=kvantum' | \
-    sudo tee -a /etc/environment >/dev/null
-fi
+sudo install -Dm0644 system/environment/80-dotfiles.conf \
+  /etc/environment.d/80-dotfiles.conf
 
 sudo localectl set-x11-keymap 'us,ee' '' '' 'grp:alt_shift_toggle'
 sudo systemctl enable --now NetworkManager bluetooth power-profiles-daemon
@@ -285,8 +290,12 @@ sudo systemctl enable --now NetworkManager bluetooth power-profiles-daemon
 
 The DNF drop-in changes only the default prompt answer and parallel download
 count. Tuigreet discovers the installed session desktop files and remembers the
-last session per user. Before enabling greetd, disable the machine's current
-display manager, then enable greetd for the next boot:
+last session per user. Fedora's greetd PAM policy already contains the GNOME
+Keyring hooks; the manifest supplies `gnome-keyring-pam` so the login password
+can unlock the Default keyring with the session.
+
+Before enabling greetd, disable the machine's current display manager, then
+enable greetd for the next boot:
 
 ```sh
 sudo systemctl enable greetd
@@ -303,8 +312,8 @@ bad upgrades and accidental file changes, while a monthly scrub detects
 damaged data. Local snapshots are recovery points, not backups against drive
 loss.
 
-The package manifest already installs Snapper, Btrfs Maintenance, Btrfs
-Assistant, and Fedora's upstream Plymouth spinner.
+The package manifest installs Snapper, Btrfs Maintenance, Btrfs Assistant, and
+Fedora's upstream Plymouth spinner.
 
 Create each Snapper configuration once, then apply bounded retention:
 
@@ -359,15 +368,41 @@ remains independent, and snapshots can be inspected or restored with Snapper,
 Btrfs Assistant, or a Fedora live USB without making the bootloader depend on
 the snapshot tool.
 
-Install the small GRUB presentation layer, select Fedora's stock Plymouth
-spinner, then regenerate their derived files:
+Install the complete pinned Argon Grey theme with its upstream icons, selection
+graphics, font, spacing, and countdown. Argon's installer writes a GRUB drop-in
+that Fedora does not read, so remove that inert file and apply the narrow Fedora
+patch after saving `/etc/default/grub`. Then select Fedora's stock Plymouth
+spinner and regenerate the derived files:
 
 ```sh
-sudo install -Dm0644 system/grub/80-dotfiles.cfg \
-  /etc/default/grub.d/80-dotfiles.cfg
-sudo install -Dm0644 system/grub/theme.txt \
-  /boot/grub2/themes/dotfiles/theme.txt
+if sudo test -e /boot/grub2/splash0.png && \
+  ! sudo test -e /boot/grub2/splash0.png.before-dotfiles; then
+  sudo cp --archive /boot/grub2/splash0.png \
+    /boot/grub2/splash0.png.before-dotfiles
+fi
 
+(
+  cd ~/.local/src/argon-grub-theme
+  sudo ./install.sh \
+    --install \
+    --boot \
+    --background grey \
+    --resolution 1080p \
+    --icons coloured \
+    --font /usr/local/share/fonts/JetBrainsMonoNerdFont/JetBrainsMonoNerdFontMono-Regular.ttf \
+    --fontcolour '#D7E0E7,#030609,#647582' \
+    --fontsize 24 \
+    --help-label \
+    --auto
+)
+
+sudo rm -f /etc/default/grub.d/argon.cfg
+
+if ! sudo test -e /etc/default/grub.before-dotfiles; then
+  sudo cp --archive /etc/default/grub \
+    /etc/default/grub.before-dotfiles
+fi
+sudo patch /etc/default/grub < patches/fedora-grub.patch
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo plymouth-set-default-theme -R spinner
 ```
@@ -376,13 +411,18 @@ Validate the generated boot configuration and selected Plymouth theme:
 
 ```sh
 sudo grub2-script-check /boot/grub2/grub.cfg
+sudo grep -F '/boot/grub2/themes/argon/theme.txt' \
+  /boot/grub2/grub.cfg
+sudo test -e /boot/grub2/themes/argon/icons/fedora.png
 test "$(plymouth-set-default-theme)" = spinner
 ```
 
-The GRUB drop-in changes only presentation. It leaves Fedora's BLS, saved
-default, timeout, kernel command line, and rescue image behavior untouched.
-Plymouth remains an unmodified Fedora package rather than a locally maintained
-renderer.
+The GRUB patch selects the unmodified Argon theme, requests recovery-mode
+entries, and keeps Fedora's flat menu so older kernels and the Fedora rescue
+image remain directly visible. Argon's help label documents `E` for editing a
+boot entry and `C` for opening the GRUB terminal. Fedora's BLS, saved default,
+timeout, and kernel command line stay intact. Plymouth remains an unmodified
+Fedora package.
 
 ### 7. Stow authored files
 
@@ -392,13 +432,16 @@ From the repository root:
 stow --no-folding --target="$HOME" dotfiles
 ya pkg install
 mkdir -p ~/.config/dotfiles/hardware.d
-touch ~/.config/sway/outputs ~/.config/sway/workspaces \
-  ~/.config/dotfiles/hardware.d/sway.conf \
+install -Dm0644 profiles/laptop/sway-outputs.conf ~/.config/sway/outputs
+install -Dm0644 profiles/laptop/niri-hardware.kdl \
   ~/.config/niri/dotfiles-hardware.kdl
+touch ~/.config/sway/workspaces ~/.config/dotfiles/hardware.d/sway.conf
 ```
 
 `--no-folding` is required so generated files cannot be written through a
-directory symlink into the repository.
+directory symlink into the repository. The laptop profile records the built-in
+`eDP-1` display at scale 1. Skip its two `install` commands on other hardware
+and let `nwg-displays` create local output configuration instead.
 
 Yazi installs the pinned official `mount.yazi` package into its generated local
 plugin directory. Press `M` in Yazi to mount, unmount, or eject through UDisks.
@@ -409,7 +452,7 @@ automount daemon.
 ### 8. Build the compositor bases
 
 The checked-in Sway config is only an include graph. Build its base from the
-currently installed Fedora config and apply the small patch:
+installed Fedora config and apply the small patch:
 
 ```sh
 mkdir -p ~/.config/sway/generated
@@ -427,26 +470,17 @@ uses `~/.config/niri/monitor.kdl` and adds its native include itself. Generate
 them only when the display layout needs changing. They are not repository
 inputs.
 
-Create Niri's complete base from the version-matched packaged example, then add
-the dotfiles include as its final top-level line:
+Create Niri's base from its version-matched packaged example and apply the
+reviewed removals and final include:
 
 ```sh
 cp /usr/share/doc/niri/default-config.kdl ~/.config/niri/config.kdl
-printf '\ninclude "dotfiles.kdl"\n' >> ~/.config/niri/config.kdl
+patch ~/.config/niri/config.kdl < patches/niri-stock.patch
 ```
 
-The resulting final line is:
-
-```kdl
-include "dotfiles.kdl"
-```
-
-The final position lets the small dotfiles binding fragment override conflicting
-stock bindings. `dotfiles.kdl` is only an include graph: Niri keybindings and
-session extensions live in separate `conf.d` fragments, and new fragments are
-added only when an actual override exists. Niri validates the missing local
-hardware include as optional. Sway hardware exceptions may be placed locally in
-`~/.config/dotfiles/hardware.d/sway.conf`.
+The patch removes duplicate stock bindings, the stock Swaylock binding, and
+stock Waybar startup. It includes the dotfiles graph last so its fragments can
+override the remaining base. Local hardware includes stay outside Git.
 
 ### 9. Select Colloid and load the GTK override
 
@@ -465,8 +499,6 @@ the installed theme, remove the three colors owned by the override, then load
 the small authored layer:
 
 ```sh
-mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
-
 cp ~/.themes/Colloid-Dark/gtk-4.0/gtk.css \
   ~/.config/gtk-4.0/gtk-colloid.css
 sed -i \
@@ -474,22 +506,11 @@ sed -i \
   -e '/^@define-color accent_fg_color /d' \
   -e '/^@define-color accent_color /d' \
   ~/.config/gtk-4.0/gtk-colloid.css
-
-printf '%s\n' '@import url("../dotfiles/gtk.css");' \
-  > ~/.config/gtk-3.0/gtk.css
-printf '%s\n' \
-  '@import url("gtk-colloid.css");' \
-  '@import url("../dotfiles/gtk.css");' \
-  > ~/.config/gtk-4.0/gtk.css
 ```
 
 The GTK 3 theme provides the complete foundation through theme selection. GTK
-4's generated `gtk-colloid.css` remains local and is not committed. Both load
-this authored override:
-
-```css
-@import url("../dotfiles/gtk.css");
-```
+4's generated `gtk-colloid.css` remains local. The tracked GTK import files load
+the shared authored override.
 
 ### 10. Build the local Kvantum variant
 
@@ -505,8 +526,6 @@ patch ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconf
   < patches/kvantum-config.patch
 patch ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg \
   < patches/kvantum-svg.patch
-printf '[General]\ntheme=ColloidNordDark-dotfiles\n' \
-  > ~/.config/Kvantum/kvantum.kvconfig
 ```
 
 These generated files are intentionally outside Git.
@@ -539,7 +558,7 @@ test "$(xdg-mime query default x-scheme-handler/https)" = \
   google-chrome.desktop
 test "$(gsettings get org.gnome.desktop.interface gtk-theme)" = \
   "'Colloid-Dark'"
-grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment
+grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment.d/80-dotfiles.conf
 
 foot --check-config --config="$HOME/.config/foot/foot.ini"
 fuzzel --check-config --config="$HOME/.config/fuzzel/fuzzel.ini"
@@ -616,13 +635,10 @@ generated file with `sway -C` or `niri validate`.
 
 ## Updating after Fedora or Colloid changes
 
-Re-copy `/etc/sway/config` or the installed Colloid assets and reapply the
-corresponding patch. If `patch` rejects a hunk, inspect the upstream change and
-refresh that patch instead of forcing it. When adopting a new Colloid release,
-update `manifest/colloid-revisions.env` in the same commit as the reviewed
-patches. Update `manifest/external-revisions.env` only after verifying the
-corresponding font checksum or reviewing the `nwg-displays` installer at the
-new revision. Do not move pins merely because upstream has advanced.
+Re-copy the packaged Sway or Niri base, or the installed Colloid assets, and
+reapply the corresponding patch. If `patch` rejects a hunk, inspect the upstream
+change and refresh the patch instead of forcing it. Update a revision manifest
+only after reviewing its source and the affected patch or checksum.
 
 ## Reverting
 
@@ -638,8 +654,6 @@ rm -f ~/.config/sway/generated/base.conf \
   ~/.config/niri/config.kdl \
   ~/.config/niri/dotfiles-hardware.kdl \
   ~/.config/niri/monitor.kdl \
-  ~/.config/gtk-3.0/gtk.css \
-  ~/.config/gtk-4.0/gtk.css \
   ~/.config/gtk-4.0/gtk-colloid.css \
   ~/.config/dotfiles/location.env
 
@@ -688,17 +702,21 @@ sudo systemctl disable --now \
 sudo rm /etc/dnf/libdnf5.conf.d/80-dotfiles.conf \
   /etc/keyd/dotfiles-emergency.conf \
   /usr/local/libexec/dotfiles-session-rescue \
-  /etc/default/grub.d/80-dotfiles.cfg \
-  /boot/grub2/themes/dotfiles/theme.txt
+  /etc/environment.d/80-dotfiles.conf
 
-sudo rmdir /boot/grub2/themes/dotfiles
+sudo rm -rf /boot/grub2/themes/argon
+
+if sudo test -e /boot/grub2/splash0.png.before-dotfiles; then
+  sudo mv /boot/grub2/splash0.png.before-dotfiles \
+    /boot/grub2/splash0.png
+else
+  sudo rm -f /boot/grub2/splash0.png
+fi
+
+sudo mv /etc/default/grub.before-dotfiles /etc/default/grub
 
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo plymouth-set-default-theme --reset -R
-
-if sudo test -e /etc/environment.before-dotfiles; then
-  sudo mv /etc/environment.before-dotfiles /etc/environment
-fi
 
 sudo localectl set-x11-keymap us
 

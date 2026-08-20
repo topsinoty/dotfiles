@@ -1,9 +1,20 @@
 #!/bin/sh
 
-# Keep exactly one Waybar process across Sway configuration reloads.
+# Keep exactly one Waybar process for the active compositor.
 set -eu
 
-config=$HOME/.config/waybar/sway.jsonc
+compositor=${1:-sway}
+config=$HOME/.config/waybar/$compositor.jsonc
+
+case $compositor in
+    sway | niri)
+        ;;
+    *)
+        printf 'unsupported Waybar compositor: %s\n' "$compositor" >&2
+        exit 2
+        ;;
+esac
+
 pkill --uid "$(id -u)" --full --exact "waybar --config $config" || true
 
 exec waybar --config "$config"

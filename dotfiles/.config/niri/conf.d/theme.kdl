@@ -1,0 +1,39 @@
+layout {
+    gaps 3
+    background-color "#030609"
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 1
+        active-color "#00C8FF"
+        inactive-color "#0A1118"
+        urgent-color "#FF466B"
+    }
+
+    shadow {
+        off
+    }
+
+    tab-indicator {
+        corner-radius 0
+        active-color "#00C8FF"
+        inactive-color "#647582"
+        urgent-color "#FF466B"
+    }
+
+    insert-hint {
+        color "#00C8FF"
+    }
+
+    struts {
+        top 1
+    }
+}
+
+overview {
+    backdrop-color "#030609"
+}

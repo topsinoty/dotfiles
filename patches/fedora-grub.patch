@@ -1,0 +1,14 @@
+--- grub
++++ grub
+@@ -2,7 +2,9 @@
+ GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+ GRUB_DEFAULT=saved
+ GRUB_DISABLE_SUBMENU=true
+-GRUB_TERMINAL_OUTPUT="console"
++GRUB_TERMINAL_OUTPUT="gfxterm"
++GRUB_GFXMODE="1920x1080,auto"
++GRUB_THEME="/boot/grub2/themes/argon/theme.txt"
+ GRUB_CMDLINE_LINUX="rhgb quiet"
+-GRUB_DISABLE_RECOVERY="true"
++GRUB_DISABLE_RECOVERY="false"
+ GRUB_ENABLE_BLSCFG=true

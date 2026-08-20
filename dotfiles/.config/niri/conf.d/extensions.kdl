@@ -1,4 +1,4 @@
-spawn-sh-at-startup "exec waybar --config \"$HOME/.config/waybar/niri.jsonc\""
+spawn-sh-at-startup "exec \"$HOME/.local/bin/dotfiles-waybar\" niri"
 spawn-at-startup "mako"
 spawn-sh-at-startup "exec swayidle -C \"$HOME/.config/swayidle/niri\""
 spawn-at-startup "playerctld" "daemon"
