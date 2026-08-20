@@ -5,7 +5,6 @@ xwayland-satellite
 swayidle
 wireplumber
 pipewire-utils
-wayland-utils
 waybar
 wlogout
 foot

@@ -105,82 +105,73 @@ load_session_identity()
     bus=unix:path=$runtime/bus
 }
 
-run_on_wayland_display()
+run_as_session_user()
 {
-    display=$1
-    shift
-
     runuser -u "$session_user" -- env \
         XDG_RUNTIME_DIR="$runtime" \
         DBUS_SESSION_BUS_ADDRESS="$bus" \
-        WAYLAND_DISPLAY="$display" \
         "$@"
 }
 
-check_wayland_display()
+open_wlogout_with_sway()
 {
-    display=$1
+    command -v swaymsg >/dev/null 2>&1 || return 1
 
-    timeout 2 runuser -u "$session_user" -- env \
-        XDG_RUNTIME_DIR="$runtime" \
-        DBUS_SESSION_BUS_ADDRESS="$bus" \
-        WAYLAND_DISPLAY="$display" \
-        wayland-info >/dev/null 2>&1
-}
+    for socket in "$runtime"/sway-ipc."$session_uid".*.sock; do
+        [ -S "$socket" ] || continue
 
-read_environment_value()
-{
-    requested_name=$1
+        if ! run_as_session_user timeout 2 env \
+            SWAYSOCK="$socket" \
+            swaymsg --socket "$socket" --type get_version >/dev/null 2>&1
+        then
+            continue
+        fi
 
-    while IFS='=' read -r name value; do
-        if [ "$name" = "$requested_name" ]; then
-            printf '%s\n' "$value"
+        log_event "asking Sway to open Wlogout for session $session"
+
+        if run_as_session_user timeout 2 env \
+            SWAYSOCK="$socket" \
+            swaymsg --quiet --socket "$socket" exec wlogout
+        then
             return 0
         fi
+
+        log_event "Sway failed to open Wlogout for session $session"
     done
 
     return 1
 }
 
-find_wayland_displays()
+open_wlogout_with_niri()
 {
-    # Prefer the display exported by the session, then try discovered sockets.
-    environment=$(timeout 2 runuser -u "$session_user" -- env \
-        XDG_RUNTIME_DIR="$runtime" \
-        DBUS_SESSION_BUS_ADDRESS="$bus" \
-        systemctl --user show-environment) || environment=
+    command -v niri >/dev/null 2>&1 || return 1
 
-    preferred=$(printf '%s\n' "$environment" |
-        read_environment_value WAYLAND_DISPLAY) || preferred=
-
-    wayland_displays=
-    add_wayland_display "$preferred"
-
-    for socket in "$runtime"/wayland-[0-9]*; do
+    for socket in "$runtime"/niri.*.sock; do
         [ -S "$socket" ] || continue
-        add_wayland_display "${socket##*/}"
-    done
-}
 
-add_wayland_display()
-{
-    display=$1
-    [ -n "$display" ] || return 0
+        if ! run_as_session_user timeout 2 env \
+            NIRI_SOCKET="$socket" \
+            niri msg version >/dev/null 2>&1
+        then
+            continue
+        fi
 
-    case " $wayland_displays " in
-        *" $display "*)
+        log_event "asking Niri to open Wlogout for session $session"
+
+        if run_as_session_user timeout 2 env \
+            NIRI_SOCKET="$socket" \
+            niri msg action spawn -- wlogout
+        then
             return 0
-            ;;
-    esac
+        fi
 
-    if [ -n "$wayland_displays" ]; then
-        wayland_displays="$wayland_displays $display"
-    else
-        wayland_displays=$display
-    fi
+        log_event "Niri failed to open Wlogout for session $session"
+    done
+
+    return 1
 }
 
-try_wlogout()
+open_wlogout()
 {
     [ "$session_type" = wayland ] || return 1
 
@@ -189,26 +180,8 @@ try_wlogout()
         return 1
     fi
 
-    if ! command -v wayland-info >/dev/null 2>&1; then
-        log_event 'wayland-info is unavailable; compositor responsiveness cannot be checked'
-        return 1
-    fi
-
-    find_wayland_displays
-
-    for display in $wayland_displays; do
-        # A bounded round trip prevents a stale or frozen socket from blocking rescue.
-        check_wayland_display "$display" || continue
-
-        log_event "opening Wlogout for session $session on $display"
-
-        # Wait so the lock remains held while the menu is open.
-        run_on_wayland_display "$display" \
-            setsid --fork --wait wlogout || true
-
-        # Closing or cancelling a displayed menu must never terminate the session.
-        return 0
-    done
+    open_wlogout_with_sway && return 0
+    open_wlogout_with_niri && return 0
 
     return 1
 }
@@ -225,8 +198,8 @@ fi
 
 log_event "selected $session_type session $session"
 
-if try_wlogout; then
-    log_event "Wlogout handled session $session"
+if open_wlogout; then
+    log_event "Wlogout opened for session $session"
     exit 0
 fi
 
