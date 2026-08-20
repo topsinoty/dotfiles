@@ -84,4 +84,6 @@ snapper
 btrfsmaintenance
 btrfs-assistant
 grub2-tools
+grub2-tools-extra
+file
 plymouth-theme-spinner
