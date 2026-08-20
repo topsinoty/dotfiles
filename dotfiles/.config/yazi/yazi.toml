@@ -1,0 +1,13 @@
+[[opener.mpv]]
+run = '"$HOME/.local/bin/dotfiles-mpv" "$@"'
+orphan = true
+desc = "Play with MPV"
+for = "unix"
+
+[[open.prepend_rules]]
+mime = "audio/*"
+use = "mpv"
+
+[[open.prepend_rules]]
+mime = "video/*"
+use = "mpv"

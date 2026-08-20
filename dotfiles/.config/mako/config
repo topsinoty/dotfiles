@@ -1,0 +1,16 @@
+font=JetBrainsMono Nerd Font Mono 10
+background-color=#030609F2
+text-color=#D7E0E7
+border-color=#647582
+border-size=1
+border-radius=0
+
+[urgency=low]
+border-color=#0A1118
+text-color=#647582
+
+[urgency=normal]
+border-color=#00C8FF
+
+[urgency=high]
+border-color=#FF466B

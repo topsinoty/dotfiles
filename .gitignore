@@ -1,0 +1,5 @@
+generated/
+.stow-test/
+.zcompdump*
+*.swp
+*~

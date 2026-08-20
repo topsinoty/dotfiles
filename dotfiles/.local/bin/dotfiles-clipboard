@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Preserve the current clipboard when the picker is dismissed without a choice.
+set -eu
+
+entry=$(cliphist list | fuzzel --dmenu --prompt="> ") || exit 0
+[ -n "$entry" ] || exit 0
+
+printf '%s\n' "$entry" | cliphist decode | wl-copy

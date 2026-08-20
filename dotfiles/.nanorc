@@ -1,0 +1,9 @@
+set linenumbers
+set numbercolor cyan
+set autoindent
+set tabsize 4
+set tabstospaces
+set indicator
+set historylog
+set positionlog
+include "/usr/share/nano/*.nanorc"

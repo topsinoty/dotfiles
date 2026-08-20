@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Keep exactly one Waybar process across Sway configuration reloads.
+set -eu
+
+config=$HOME/.config/waybar/sway.jsonc
+pkill --uid "$(id -u)" --full --exact "waybar --config $config" || true
+
+exec waybar --config "$config"

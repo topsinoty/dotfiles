@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Start only from coordinates that the user previously confirmed.
+set -eu
+
+log_event()
+{
+    logger --tag dotfiles-wlsunset -- "$1" || true
+}
+
+read_location()
+{
+    latitude=
+    longitude=
+
+    while IFS='=' read -r name value; do
+        case $name in
+            latitude)
+                latitude=$value
+                ;;
+            longitude)
+                longitude=$value
+                ;;
+            '')
+                ;;
+            *)
+                log_event "ignored unknown location setting: $name"
+                ;;
+        esac
+    done < "$config"
+}
+
+has_location()
+{
+    if [ -z "$latitude" ]; then
+        return 1
+    fi
+
+    if [ -z "$longitude" ]; then
+        return 1
+    fi
+
+    return 0
+}
+
+config=${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/location.env
+
+if [ ! -r "$config" ]; then
+    log_event 'location is not configured; wlsunset was not started'
+    exit 0
+fi
+
+read_location
+
+if ! has_location; then
+    log_event 'location configuration is incomplete'
+    exit 1
+fi
+
+log_event 'starting wlsunset with saved coordinates'
+exec wlsunset \
+    -l "$latitude" \
+    -L "$longitude"
