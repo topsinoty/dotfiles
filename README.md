@@ -35,8 +35,9 @@ supported fallback.
 
 `manifest/colloid-revisions.env` defines the Colloid fork revisions required by
 the GTK override and Kvantum patches. `manifest/external-revisions.env` defines
-the Nerd Font archive and `nwg-displays` fork revision. Use those revisions for
-a reproducible restoration; update them only as part of a deliberate upgrade.
+the external font inputs and `nwg-displays` fork revision. Use those revisions
+for a reproducible restoration; update them only as part of a deliberate
+upgrade.
 
 Sway is composed from independent modules:
 
@@ -62,10 +63,10 @@ linear: finish each numbered section before continuing.
 
 ### 1. Bootstrap and clone
 
-Git and the dnf COPR command are the only bootstrap requirements:
+Git and the DNF COPR command are the only bootstrap requirements:
 
 ```sh
-sudo dnf install git dnf-plugins
+sudo dnf install git dnf5-plugins
 
 mkdir -p ~/.local/src
 git clone https://github.com/topsinoty/dotfiles.git ~/.local/src/dotfiles
@@ -100,7 +101,36 @@ sudo dnf install \
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 ```
 
-### 3. Install pinned external inputs
+### 3. Back up conflicting files on an existing home
+
+A fresh Fedora home has no conflicts and can skip this section. Stow does not
+overwrite existing application configuration, so move conflicting files out
+of its target before installing external inputs or Stowing the package:
+
+```sh
+backup=$HOME/.local/state/dotfiles/manual-backup
+mkdir -p "$backup/.config"
+
+for directory in \
+  dotfiles fastfetch foot fuzzel gtklock mako mpv niri sway swayidle waybar yazi \
+  gtk-3.0 gtk-4.0 Kvantum; do
+  source=$HOME/.config/$directory
+  [ ! -e "$source" ] || mv "$source" "$backup/$directory"
+done
+
+for file in .bashrc .zshrc .gitconfig .nanorc; do
+  source=$HOME/$file
+  [ ! -e "$source" ] || mv "$source" "$backup/$file"
+done
+
+dconf dump /org/gnome/desktop/interface/ \
+  > "$backup/gnome-interface.dconf"
+
+[ ! -e "$HOME/.config/starship.toml" ] || \
+  mv "$HOME/.config/starship.toml" "$backup/.config/starship.toml"
+```
+
+### 4. Install pinned external inputs
 
 Load the pinned source revisions:
 
@@ -205,7 +235,7 @@ loads autosuggestions and syntax highlighting. Bash and Zsh retain 100,000
 commands in persistent history, which backs Fzf's `Ctrl+R` search across
 sessions.
 
-### 4. Install system integration
+### 5. Install system integration
 
 Install the system-level Ctrl-Alt-Delete fallback, then start keyd:
 
@@ -226,7 +256,7 @@ runtime.
 
 Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
 
-Install the dnf and greetd files:
+Install the DNF and greetd files:
 
 ```sh
 if sudo test -e /etc/greetd/config.toml && \
@@ -236,7 +266,7 @@ if sudo test -e /etc/greetd/config.toml && \
 fi
 
 sudo install -Dm0644 system/dnf/80-dotfiles.conf \
-  /etc/dnf/libdnf.conf.d/80-dotfiles.conf
+  /etc/dnf/libdnf5.conf.d/80-dotfiles.conf
 sudo install -Dm0644 system/greetd/config.toml /etc/greetd/config.toml
 
 if ! grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment; then
@@ -253,7 +283,7 @@ sudo localectl set-x11-keymap 'us,ee' '' '' 'grp:alt_shift_toggle'
 sudo systemctl enable --now NetworkManager bluetooth power-profiles-daemon
 ```
 
-The dnf drop-in changes only the default prompt answer and parallel download
+The DNF drop-in changes only the default prompt answer and parallel download
 count. Tuigreet discovers the installed session desktop files and remembers the
 last session per user. Before enabling greetd, disable the machine's current
 display manager, then enable greetd for the next boot:
@@ -265,7 +295,7 @@ sudo systemctl set-default graphical.target
 
 Do not stop the active display manager from inside the graphical session.
 
-### 5. Configure recovery and boot presentation
+### 6. Configure recovery and boot presentation
 
 These recovery commands require separate Btrfs subvolumes for `/` and `/home`,
 as created by Fedora's automatic Btrfs partitioning. Snapper protects against
@@ -353,36 +383,6 @@ The GRUB drop-in changes only presentation. It leaves Fedora's BLS, saved
 default, timeout, kernel command line, and rescue image behavior untouched.
 Plymouth remains an unmodified Fedora package rather than a locally maintained
 renderer.
-
-### 6. Back up conflicting files on an existing home
-
-A fresh Fedora home has no conflicts and can skip this section. When applying
-the repository to an existing home, run this backup before sections 3 and 7.
-Stow will not overwrite existing application configs.
-
-```sh
-mkdir -p ~/.local/state/dotfiles/manual-backup
-
-for directory in sway niri gtk-3.0 gtk-4.0 Kvantum; do
-  source=$HOME/.config/$directory
-  [ -e "$source" ] && cp -a "$source" ~/.local/state/dotfiles/manual-backup/
-done
-
-# Preserve shell and tool files that would conflict with Stow.
-backup=$HOME/.local/state/dotfiles/manual-backup
-
-for file in .bashrc .zshrc .gitconfig .nanorc; do
-  source=$HOME/$file
-  [ -e "$source" ] && mv "$source" "$backup/$file"
-done
-
-mkdir -p "$backup/.config"
-dconf dump /org/gnome/desktop/interface/ \
-  > "$backup/gnome-interface.dconf"
-
-[ ! -e "$HOME/.config/starship.toml" ] || \
-  mv "$HOME/.config/starship.toml" "$backup/.config/starship.toml"
-```
 
 ### 7. Stow authored files
 
@@ -620,9 +620,9 @@ Re-copy `/etc/sway/config` or the installed Colloid assets and reapply the
 corresponding patch. If `patch` rejects a hunk, inspect the upstream change and
 refresh that patch instead of forcing it. When adopting a new Colloid release,
 update `manifest/colloid-revisions.env` in the same commit as the reviewed
-patches. Update `manifest/external-revisions.env` only after verifying the Nerd
-Font checksum or reviewing the `nwg-displays` installer at the new revision.
-Do not move pins merely because upstream has advanced.
+patches. Update `manifest/external-revisions.env` only after verifying the
+corresponding font checksum or reviewing the `nwg-displays` installer at the
+new revision. Do not move pins merely because upstream has advanced.
 
 ## Reverting
 
@@ -656,7 +656,9 @@ managed files. Restore any files saved from an existing home:
 ```sh
 backup=$HOME/.local/state/dotfiles/manual-backup
 
-for directory in sway niri gtk-3.0 gtk-4.0 Kvantum; do
+for directory in \
+  dotfiles fastfetch foot fuzzel gtklock mako mpv niri sway swayidle waybar yazi \
+  gtk-3.0 gtk-4.0 Kvantum; do
   [ ! -e "$backup/$directory" ] || \
     cp -a "$backup/$directory" ~/.config/
 done
@@ -683,7 +685,7 @@ sudo systemctl disable greetd keyd
 sudo systemctl disable --now \
   snapper-timeline.timer snapper-cleanup.timer btrfs-scrub.timer
 
-sudo rm /etc/dnf/libdnf.conf.d/80-dotfiles.conf \
+sudo rm /etc/dnf/libdnf5.conf.d/80-dotfiles.conf \
   /etc/keyd/dotfiles-emergency.conf \
   /usr/local/libexec/dotfiles-session-rescue \
   /etc/default/grub.d/80-dotfiles.cfg \

@@ -82,4 +82,5 @@ python3-wheel
 snapper
 btrfsmaintenance
 btrfs-assistant
+grub2-tools
 plymouth-theme-spinner
