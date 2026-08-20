@@ -57,9 +57,10 @@ Sway config, or copied Colloid SVG.
 sudo dnf copr enable atim/starship
 sudo dnf copr enable jdxcode/mise
 sudo dnf copr enable lihaohong/yazi
+sudo dnf copr enable alternateved/keyd
 
 sudo dnf install sway waybar wlogout foot fuzzel mako gtklock stow patch git fontconfig \
-  swayidle wireplumber rofimoji starship mise \
+  swayidle wireplumber wayland-utils rofimoji starship mise keyd \
   google-noto-emoji-fonts \
   sassc gtk-murrine-engine xdg-utils xdg-user-dirs grim slurp brightnessctl playerctl \
   wl-clipboard cliphist pavucontrol nm-connection-editor libnotify \
@@ -113,6 +114,25 @@ Make Zsh the login shell:
 ```sh
 chsh -s "$(command -v zsh)"
 ```
+
+Install the system-level Ctrl-Alt-Delete fallback, then start keyd:
+
+```sh
+sudo install -Dm0755 system/libexec/dotfiles-session-rescue \
+  /usr/local/libexec/dotfiles-session-rescue
+sudo install -Dm0644 system/keyd/dotfiles-emergency.conf \
+  /etc/keyd/dotfiles-emergency.conf
+sudo keyd check /etc/keyd/dotfiles-emergency.conf
+sudo systemctl enable --now keyd
+```
+
+keyd receives the chord independently of the compositor. The helper opens
+Wlogout through any responsive Wayland socket, covering Sway and Niri, and
+otherwise asks logind to terminate only the active local graphical session. It
+discovers the seat, session, user, runtime directory, and Wayland socket at
+runtime.
+
+Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
 
 ### 2. Back up conflicting files
 

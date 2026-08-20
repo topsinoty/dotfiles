@@ -1,6 +1,7 @@
 sway
 swayidle
 wireplumber
+wayland-utils
 waybar
 wlogout
 foot
@@ -8,6 +9,7 @@ fuzzel
 rofimoji
 mako
 gtklock
+keyd
 stow
 patch
 yazi
