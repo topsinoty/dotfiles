@@ -65,6 +65,7 @@ blueman
 bluez
 power-profiles-daemon
 mate-polkit
+gnome-keyring-pam
 kvantum
 kvantum-qt5
 xdg-desktop-portal
