@@ -30,6 +30,7 @@ done
 umask 077
 exec 9>/run/dotfiles-session-rescue.lock
 flock -n 9 || exit 0
+log_event 'rescue requested'
 
 session=
 session_type=
@@ -154,6 +155,8 @@ try_wlogout()
         # A bounded round trip prevents a stale or frozen socket from blocking rescue.
         wayland_display_responds "$display" || continue
 
+        log_event "opening Wlogout for session $session on $display"
+
         # Wait so the lock remains held while the menu is open.
         run_on_wayland_display "$display" \
             setsid --fork --wait wlogout || true
@@ -174,6 +177,8 @@ if ! load_session_identity; then
     log_event "could not resolve the identity of session $session"
     exit 0
 fi
+
+log_event "selected $session_type session $session"
 
 if try_wlogout; then
     log_event "Wlogout handled session $session"
