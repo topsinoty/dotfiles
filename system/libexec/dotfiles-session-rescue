@@ -1,0 +1,239 @@
+#!/bin/sh
+
+# Show Wlogout when the active Wayland compositor responds.
+# Otherwise, terminate only the active local graphical session.
+set -u
+
+PATH=/usr/sbin:/usr/bin
+export PATH
+
+log_event()
+{
+    logger --tag dotfiles-session-rescue -- "$1" || true
+}
+
+if [ "$(id -u)" -ne 0 ]; then
+    log_event 'refused an unprivileged invocation'
+    printf '%s\n' 'dotfiles-session-rescue must run as root' >&2
+    exit 1
+fi
+
+# Ignore repeated key presses until the current rescue attempt finishes.
+umask 077
+exec 9>/run/dotfiles-session-rescue.lock
+flock -n 9 || exit 0
+log_event 'rescue requested'
+
+session=
+session_type=
+session_user=
+session_uid=
+runtime=
+bus=
+
+get_session_property()
+{
+    session_id=$1
+    property=$2
+
+    value=$(loginctl show-session "$session_id" \
+        --property="$property" \
+        --value) || value=
+
+    printf '%s\n' "$value"
+}
+
+list_seats()
+{
+    loginctl list-seats --no-legend |
+        while read -r seat _; do
+            [ -n "$seat" ] || continue
+            printf '%s\n' "$seat"
+        done
+}
+
+accept_session()
+{
+    if [ "$remote" != no ]; then
+        return 1
+    fi
+
+    case $candidate_type in
+        wayland | x11)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+find_active_graphical_session()
+{
+    for seat in $(list_seats); do
+        candidate=$(loginctl show-seat "$seat" \
+            --property=ActiveSession \
+            --value) || candidate=
+
+        [ -n "$candidate" ] || continue
+
+        remote=$(get_session_property "$candidate" Remote)
+        candidate_type=$(get_session_property "$candidate" Type)
+
+        if ! accept_session; then
+            continue
+        fi
+
+        session=$candidate
+        session_type=$candidate_type
+        return 0
+    done
+
+    return 1
+}
+
+load_session_identity()
+{
+    session_user=$(get_session_property "$session" Name)
+    [ -n "$session_user" ] || return 1
+
+    session_uid=$(id -u "$session_user") || session_uid=
+
+    [ -n "$session_uid" ] || return 1
+
+    runtime=/run/user/$session_uid
+    bus=unix:path=$runtime/bus
+}
+
+run_on_wayland_display()
+{
+    display=$1
+    shift
+
+    runuser -u "$session_user" -- env \
+        XDG_RUNTIME_DIR="$runtime" \
+        DBUS_SESSION_BUS_ADDRESS="$bus" \
+        WAYLAND_DISPLAY="$display" \
+        "$@"
+}
+
+check_wayland_display()
+{
+    display=$1
+
+    timeout 2 runuser -u "$session_user" -- env \
+        XDG_RUNTIME_DIR="$runtime" \
+        DBUS_SESSION_BUS_ADDRESS="$bus" \
+        WAYLAND_DISPLAY="$display" \
+        wayland-info >/dev/null 2>&1
+}
+
+read_environment_value()
+{
+    requested_name=$1
+
+    while IFS='=' read -r name value; do
+        if [ "$name" = "$requested_name" ]; then
+            printf '%s\n' "$value"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+find_wayland_displays()
+{
+    # Prefer the display exported by the session, then try discovered sockets.
+    environment=$(timeout 2 runuser -u "$session_user" -- env \
+        XDG_RUNTIME_DIR="$runtime" \
+        DBUS_SESSION_BUS_ADDRESS="$bus" \
+        systemctl --user show-environment) || environment=
+
+    preferred=$(printf '%s\n' "$environment" |
+        read_environment_value WAYLAND_DISPLAY) || preferred=
+
+    wayland_displays=
+    add_wayland_display "$preferred"
+
+    for socket in "$runtime"/wayland-[0-9]*; do
+        [ -S "$socket" ] || continue
+        add_wayland_display "${socket##*/}"
+    done
+}
+
+add_wayland_display()
+{
+    display=$1
+    [ -n "$display" ] || return 0
+
+    case " $wayland_displays " in
+        *" $display "*)
+            return 0
+            ;;
+    esac
+
+    if [ -n "$wayland_displays" ]; then
+        wayland_displays="$wayland_displays $display"
+    else
+        wayland_displays=$display
+    fi
+}
+
+try_wlogout()
+{
+    [ "$session_type" = wayland ] || return 1
+
+    if ! command -v wlogout >/dev/null 2>&1; then
+        log_event 'Wlogout is unavailable'
+        return 1
+    fi
+
+    if ! command -v wayland-info >/dev/null 2>&1; then
+        log_event 'wayland-info is unavailable; compositor responsiveness cannot be checked'
+        return 1
+    fi
+
+    find_wayland_displays
+
+    for display in $wayland_displays; do
+        # A bounded round trip prevents a stale or frozen socket from blocking rescue.
+        check_wayland_display "$display" || continue
+
+        log_event "opening Wlogout for session $session on $display"
+
+        # Wait so the lock remains held while the menu is open.
+        run_on_wayland_display "$display" \
+            setsid --fork --wait wlogout || true
+
+        # Closing or cancelling a displayed menu must never terminate the session.
+        return 0
+    done
+
+    return 1
+}
+
+if ! find_active_graphical_session; then
+    log_event 'no active local graphical session found'
+    exit 0
+fi
+
+if ! load_session_identity; then
+    log_event "could not resolve the identity of session $session"
+    exit 0
+fi
+
+log_event "selected $session_type session $session"
+
+if try_wlogout; then
+    log_event "Wlogout handled session $session"
+    exit 0
+fi
+
+log_event "terminating unresponsive session $session"
+if ! loginctl terminate-session "$session"; then
+    log_event "failed to terminate session $session"
+    exit 1
+fi
+
+log_event "terminated session $session"

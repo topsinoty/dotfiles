@@ -1,0 +1,56 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+[mgr.cwd]
+fg = "#00C8FF"
+bold = true
+
+[mgr.find_keyword]
+fg = "#00F5A0"
+bold = true
+
+[mgr.border_style]
+fg = "#00C8FF"
+
+[indicator.padding]
+open = "▐"
+close = "▌"
+
+[tabs.sep_inner]
+open = "["
+close = "]"
+
+[tabs.sep_outer]
+open = "["
+close = "]"
+
+[status.sep_left]
+open = ""
+close = "]"
+
+[status.sep_right]
+open = "["
+close = ""
+
+[which.border]
+fg = "#00C8FF"
+
+[confirm.border]
+fg = "#FF466B"
+
+[spot.border]
+fg = "#00C8FF"
+
+[pick.border]
+fg = "#00C8FF"
+
+[input.border]
+fg = "#00C8FF"
+
+[cmp.border]
+fg = "#00C8FF"
+
+[tasks.border]
+fg = "#00C8FF"
+
+[help.border]
+fg = "#00C8FF"

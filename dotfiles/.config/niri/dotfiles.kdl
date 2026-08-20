@@ -1,0 +1,3 @@
+include "conf.d/keybinds.kdl"
+include "conf.d/extensions.kdl"
+include optional=true "dotfiles-hardware.kdl"

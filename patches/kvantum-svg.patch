@@ -1,0 +1,1602 @@
+--- ColloidNordDark.svg
++++ ColloidNordDark-dotfiles.svg
+@@ -16,2 +16,2 @@
+-     pagecolor="#454d5f"
+-     bordercolor="#666666"
++     pagecolor="#647582"
++     bordercolor="#647582"
+@@ -37 +37 @@
+-     inkscape:deskcolor="#d1d1d1">
++     inkscape:deskcolor="#D7E0E7">
+@@ -52,2 +52,2 @@
+-        color:#eff0f1;
+-        stop-color:#eff0f1;
++        color:#D7E0E7;
++        stop-color:#D7E0E7;
+@@ -56,2 +56,2 @@
+-        color:#89a3c2;
+-        stop-color:#89a3c2;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -60,2 +60,2 @@
+-        color:#89a3c2;
+-        stop-color:#89a3c2;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -64,2 +64,2 @@
+-        color:#fcfcfc;
+-        stop-color:#fcfcfc;
++        color:#D7E0E7;
++        stop-color:#D7E0E7;
+@@ -68,2 +68,2 @@
+-        color:#93cee9;
+-        stop-color:#93cee9;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -72,2 +72,2 @@
+-        color:#89a3c2;
+-        stop-color:#89a3c2;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -76,2 +76,2 @@
+-        color:#31363b;
+-        stop-color:#31363b;
++        color:#0A1118;
++        stop-color:#0A1118;
+@@ -80,2 +80,2 @@
+-        color:#eff0f1;
+-        stop-color:#eff0f1;
++        color:#D7E0E7;
++        stop-color:#D7E0E7;
+@@ -84,2 +84,2 @@
+-        color:#93cee9;
+-        stop-color:#93cee9;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -88,2 +88,2 @@
+-        color:#89a3c2;
+-        stop-color:#89a3c2;
++        color:#00C8FF;
++        stop-color:#00C8FF;
+@@ -94 +94 @@
+-         stop-color="#89a3c2"
++         stop-color="#00C8FF"
+@@ -265 +265 @@
+-       fill="#5a5a5a"
++       fill="#647582"
+@@ -313 +313 @@
+-       fill="#acb1bc"
++       fill="#D7E0E7"
+@@ -336 +336 @@
+-     fill="#5a5a5a" />
++     fill="#647582" />
+@@ -350 +350 @@
+-       style="opacity:0.1;fill:#ffffff;stroke-width:0.914286" />
++       style="opacity:0.1;fill:#D7E0E7;stroke-width:0.914286" />
+@@ -355 +355 @@
+-     style="fill:#89a3c2;fill-opacity:1" />
++     style="fill:#00C8FF;fill-opacity:1" />
+@@ -359 +359 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -373 +373 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -390 +390 @@
+-       fill="#5a616e"
++       fill="#647582"
+@@ -406 +406 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -420 +420 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -440 +440 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -455 +455 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -470 +470 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -484 +484 @@
+-       fill="#f04a50"
++       fill="#FF466B"
+@@ -486 +486 @@
+-       style="fill:#ba8095;fill-opacity:1" />
++       style="fill:#FF466B;fill-opacity:1" />
+@@ -505 +505 @@
+-       fill="#f04a50"
++       fill="#FF466B"
+@@ -507 +507 @@
+-       style="fill:#ba8095;fill-opacity:1" />
++       style="fill:#FF466B;fill-opacity:1" />
+@@ -521 +521 @@
+-       fill="#f04a50"
++       fill="#FF466B"
+@@ -523 +523 @@
+-       style="fill:#ba8095;fill-opacity:1" />
++       style="fill:#FF466B;fill-opacity:1" />
+@@ -537 +537 @@
+-       fill="#f04a50"
++       fill="#FF466B"
+@@ -539 +539 @@
+-       style="fill:#ba8095;fill-opacity:1" />
++       style="fill:#FF466B;fill-opacity:1" />
+@@ -553 +553 @@
+-       fill="#4285f4"
++       fill="#00C8FF"
+@@ -555 +555 @@
+-       style="fill:#89a3c2;fill-opacity:1" />
++       style="fill:#00C8FF;fill-opacity:1" />
+@@ -574 +574 @@
+-       fill="#4285f4"
++       fill="#00C8FF"
+@@ -576 +576 @@
+-       style="fill:#89a3c2;fill-opacity:1" />
++       style="fill:#00C8FF;fill-opacity:1" />
+@@ -590 +590 @@
+-       fill="#4285f4"
++       fill="#00C8FF"
+@@ -592 +592 @@
+-       style="fill:#89a3c2;fill-opacity:1" />
++       style="fill:#00C8FF;fill-opacity:1" />
+@@ -606 +606 @@
+-       fill="#4285f4"
++       fill="#00C8FF"
+@@ -608 +608 @@
+-       style="fill:#89a3c2;fill-opacity:1" />
++       style="fill:#00C8FF;fill-opacity:1" />
+@@ -623 +623 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -643 +643 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -658 +658 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -673 +673 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -688 +688 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -707 +707 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -717 +717 @@
+-       style="fill:#ffffff;opacity:0.25" />
++       style="fill:#D7E0E7;opacity:0.25" />
+@@ -773 +773 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -780 +780 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -787 +787 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -794 +794 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -801 +801 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -808 +808 @@
+-     style="fill:#ffffff;opacity:0.25" />
++     style="fill:#D7E0E7;opacity:0.25" />
+@@ -815 +815 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -822 +822 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -829 +829 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -836 +836 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -843 +843 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -850 +850 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -896 +896 @@
+-       style="fill:#ffffff;opacity:0.25" />
++       style="fill:#D7E0E7;opacity:0.25" />
+@@ -907 +907 @@
+-       style="fill:#ffffff;opacity:0.25" />
++       style="fill:#D7E0E7;opacity:0.25" />
+@@ -918 +918 @@
+-       style="fill:#ffffff;opacity:0.12" />
++       style="fill:#D7E0E7;opacity:0.12" />
+@@ -929 +929 @@
+-       style="fill:#ffffff;opacity:0.12" />
++       style="fill:#D7E0E7;opacity:0.12" />
+@@ -940 +940 @@
+-       style="fill:#ffffff;opacity:0.12" />
++       style="fill:#D7E0E7;opacity:0.12" />
+@@ -948 +948 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -955 +955 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -959 +959 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1;stroke-width:0.999999" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1;stroke-width:0.999999" />
+@@ -963 +963 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -967 +967 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -974 +974 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -981 +981 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -985 +985 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -989 +989 @@
+-     style="opacity:0.25;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.25;fill:#D7E0E7;fill-opacity:1" />
+@@ -996 +996 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1003 +1003 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1007 +1007 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1014 +1014 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1018 +1018 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1022 +1022 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1029 +1029 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1033 +1033 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1037 +1037 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -1044 +1044 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1051 +1051 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1055 +1055 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1062 +1062 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1066 +1066 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1070 +1070 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1077 +1077 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1081 +1081 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1085 +1085 @@
+-     style="opacity:0.08;fill:#ffffff" />
++     style="opacity:0.08;fill:#D7E0E7" />
+@@ -1089 +1089 @@
+-     style="fill:#ffffff;opacity:0.15" />
++     style="fill:#D7E0E7;opacity:0.15" />
+@@ -1093 +1093 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1097 +1097 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1101 +1101 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1105 +1105 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1109 +1109 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1113 +1113 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1117 +1117 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1121 +1121 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1125 +1125 @@
+-     style="opacity:0.1;fill:#ffffff" />
++     style="opacity:0.1;fill:#D7E0E7" />
+@@ -1129 +1129 @@
+-     style="fill:#1e222a" />
++     style="fill:#0A1118" />
+@@ -1133 +1133 @@
+-     style="fill:#1e222a;fill-opacity:1" />
++     style="fill:#0A1118;fill-opacity:1" />
+@@ -1137 +1137 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -1141 +1141 @@
+-     style="fill:#ffffff;opacity:0.15" />
++     style="fill:#D7E0E7;opacity:0.15" />
+@@ -1145 +1145 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -1152 +1152 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -1160 +1160 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -1168 +1168 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -1176 +1176 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -1181 +1181 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -1185 +1185 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -1189 +1189 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -1193 +1193 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -1208 +1208 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.75" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.75" />
+@@ -1224 +1224 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1240 +1240 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1256 +1256 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1272 +1272 @@
+-       style="fill:#dfdfdf;fill-opacity:1;opacity:0.3" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.3" />
+@@ -1288 +1288 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.75" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.75" />
+@@ -1304 +1304 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1320 +1320 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1336 +1336 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1352 +1352 @@
+-       style="fill:#dfdfdf;fill-opacity:1;opacity:0.3" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.3" />
+@@ -1368 +1368 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.75" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.75" />
+@@ -1384 +1384 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1400 +1400 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1416 +1416 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1432 +1432 @@
+-       style="fill:#dfdfdf;fill-opacity:1;opacity:0.3" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.3" />
+@@ -1448 +1448 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.75" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.75" />
+@@ -1464 +1464 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1480 +1480 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1496 +1496 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -1512 +1512 @@
+-       style="fill:#dfdfdf;fill-opacity:1;opacity:0.3" />
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.3" />
+@@ -1528 +1528 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1544 +1544 @@
+-       style="fill:#ffffff;opacity:1" />
++       style="fill:#D7E0E7;opacity:1" />
+@@ -1560 +1560 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1576 +1576 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1592 +1592 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -1608 +1608 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1624 +1624 @@
+-       style="fill:#ffffff;opacity:1" />
++       style="fill:#D7E0E7;opacity:1" />
+@@ -1640 +1640 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1656 +1656 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1672 +1672 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -1688 +1688 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1704 +1704 @@
+-       style="fill:#ffffff;opacity:1" />
++       style="fill:#D7E0E7;opacity:1" />
+@@ -1720 +1720 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1736 +1736 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1752 +1752 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -1768 +1768 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1784 +1784 @@
+-       style="fill:#ffffff;opacity:1" />
++       style="fill:#D7E0E7;opacity:1" />
+@@ -1800 +1800 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1816 +1816 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1832 +1832 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -1847 +1847 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1866 +1866 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1881 +1881 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1900 +1900 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1915 +1915 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1934 +1934 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1949 +1949 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1968 +1968 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -1983 +1983 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2002 +2002 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2018 +2018 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2034 +2034 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2050 +2050 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2066 +2066 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2082 +2082 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2098 +2098 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2114 +2114 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2130 +2130 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2146 +2146 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2162 +2162 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2178 +2178 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2194 +2194 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2210 +2210 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2226 +2226 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2242 +2242 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2258 +2258 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2274 +2274 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2290 +2290 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2306 +2306 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2322 +2322 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2338 +2338 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2354 +2354 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2370 +2370 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2386 +2386 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2402 +2402 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2418 +2418 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2434 +2434 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2449 +2449 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2468 +2468 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2483 +2483 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2502 +2502 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2517 +2517 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2536 +2536 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2551 +2551 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2570 +2570 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2585 +2585 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2604 +2604 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2619 +2619 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2638 +2638 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2653 +2653 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2672 +2672 @@
+-       style="fill:#ffffff;opacity:0.75" />
++       style="fill:#D7E0E7;opacity:0.75" />
+@@ -2687 +2687 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2706 +2706 @@
+-       style="fill:#ffffff;opacity:0.3" />
++       style="fill:#D7E0E7;opacity:0.3" />
+@@ -2730 +2730 @@
+-       style="stroke-width:1.2;fill:#242932;fill-opacity:1" />
++       style="stroke-width:1.2;fill:#030609;fill-opacity:1" />
+@@ -2747 +2747 @@
+-       style="opacity:0.15;fill:#ffffff" />
++       style="opacity:0.15;fill:#D7E0E7" />
+@@ -2760 +2760 @@
+-       style="fill:#242932;fill-opacity:1;stroke-width:1" />
++       style="fill:#030609;fill-opacity:1;stroke-width:1" />
+@@ -2777 +2777 @@
+-       style="opacity:0.15;fill:#ffffff;fill-opacity:1;stroke-width:1" />
++       style="opacity:0.15;fill:#D7E0E7;fill-opacity:1;stroke-width:1" />
+@@ -2790 +2790 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -2810 +2810 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -2956 +2956 @@
+-       fill="#646464"
++       fill="#647582"
+@@ -2967 +2967 @@
+-     style="fill:#ffffff;opacity:0.08" />
++     style="fill:#D7E0E7;opacity:0.08" />
+@@ -2977 +2977 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -2979 +2979 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -2990 +2990 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -2992 +2992 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3005 +3005 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -3007 +3007 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.15" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.15" />
+@@ -3020 +3020 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -3022 +3022 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3033 +3033 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -3035 +3035 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3046 +3046 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -3048 +3048 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3059 +3059 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -3061 +3061 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3072 +3072 @@
+-       fill="#989898"
++       fill="#647582"
+@@ -3074 +3074 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -3082 +3082 @@
+-     style="fill:#242932;fill-opacity:1" />
++     style="fill:#030609;fill-opacity:1" />
+@@ -3093 +3093 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3102 +3102 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3110 +3110 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3118 +3118 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3126 +3126 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3135 +3135 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3143 +3143 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3151 +3151 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3160 +3160 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3168 +3168 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3177 +3177 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3185 +3185 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3193 +3193 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3201 +3201 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3210 +3210 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3218 +3218 @@
+-     style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++     style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3225 +3225 @@
+-     style="fill:#242932;fill-opacity:1" />
++     style="fill:#030609;fill-opacity:1" />
+@@ -3233 +3233 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3249 +3249 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3257 +3257 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3266 +3266 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3275 +3275 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3283 +3283 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3291 +3291 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3299 +3299 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3310 +3310 @@
+-       fill="#1e1e1e"
++       fill="#030609"
+@@ -3312 +3312 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -3333 +3333 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3349 +3349 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3357 +3357 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3366 +3366 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3375 +3375 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3383 +3383 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3391 +3391 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3399 +3399 @@
+-       style="opacity:0.12;fill:#ffffff" />
++       style="opacity:0.12;fill:#D7E0E7" />
+@@ -3404 +3404 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -3408 +3408 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -3412 +3412 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -3416 +3416 @@
+-     style="fill:#ffffff;opacity:0.01" />
++     style="fill:#D7E0E7;opacity:0.01" />
+@@ -3420 +3420 @@
+-     style="fill:#ffffff;opacity:0.01" />
++     style="fill:#D7E0E7;opacity:0.01" />
+@@ -3424 +3424 @@
+-     style="fill:#ffffff;opacity:0" />
++     style="fill:#D7E0E7;opacity:0" />
+@@ -3428 +3428 @@
+-     style="fill:#ffffff;opacity:0" />
++     style="fill:#D7E0E7;opacity:0" />
+@@ -3432 +3432 @@
+-     style="fill:#ffffff;opacity:0" />
++     style="fill:#D7E0E7;opacity:0" />
+@@ -3436 +3436 @@
+-     style="fill:#ffffff;opacity:0.01" />
++     style="fill:#D7E0E7;opacity:0.01" />
+@@ -3440 +3440 @@
+-     style="fill:#ffffff;opacity:0.12" />
++     style="fill:#D7E0E7;opacity:0.12" />
+@@ -3444 +3444 @@
+-     style="fill:#333a47;fill-opacity:1" />
++     style="fill:#0A1118;fill-opacity:1" />
+@@ -3451 +3451 @@
+-       style="fill:#333a47;fill-opacity:1" />
++       style="fill:#0A1118;fill-opacity:1" />
+@@ -3454 +3454 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.08"
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.08"
+@@ -3464 +3464 @@
+-       style="fill:#333a47;fill-opacity:1" />
++       style="fill:#0A1118;fill-opacity:1" />
+@@ -3468 +3468 @@
+-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.707106;opacity:0.08" />
++       style="fill:#D7E0E7;fill-opacity:1;stroke-width:0.707106;opacity:0.08" />
+@@ -3476 +3476 @@
+-       fill="#26272a">
++       fill="#0A1118">
+@@ -3480 +3480 @@
+-         style="fill:#333a47" />
++         style="fill:#0A1118" />
+@@ -3484 +3484 @@
+-         style="stroke-width:0.316228;fill:#ffffff;opacity:0.08" />
++         style="stroke-width:0.316228;fill:#D7E0E7;opacity:0.08" />
+@@ -3506 +3506 @@
+-         style="opacity:0.65;fill:#000000" />
++         style="opacity:0.65;fill:#030609" />
+@@ -3515 +3515 @@
+-     fill="#b74aff"
++     fill="#00C8FF"
+@@ -3525 +3525 @@
+-     fill="#b74aff"
++     fill="#00C8FF"
+@@ -3534 +3534 @@
+-     fill="#b74aff"
++     fill="#00C8FF"
+@@ -3544 +3544 @@
+-     fill="#b74aff"
++     fill="#00C8FF"
+@@ -3557 +3557 @@
+-       style="fill:#333a47" />
++       style="fill:#0A1118" />
+@@ -3561 +3561 @@
+-       style="fill:#000000;opacity:0.65" />
++       style="fill:#030609;opacity:0.65" />
+@@ -3565 +3565 @@
+-       style="fill:#ffffff;opacity:0.08" />
++       style="fill:#D7E0E7;opacity:0.08" />
+@@ -3570 +3570 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3574 +3574 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3578 +3578 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3582 +3582 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3586 +3586 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3590 +3590 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3594 +3594 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3598 +3598 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3602 +3602 @@
+-     style="fill:#ffffff;opacity:0.1" />
++     style="fill:#D7E0E7;opacity:0.1" />
+@@ -3606 +3606 @@
+-     style="fill:#242932;fill-opacity:1;opacity:1" />
++     style="fill:#030609;fill-opacity:1;opacity:1" />
+@@ -3610 +3610 @@
+-     style="opacity:1;fill:#242932;stroke-width:1" />
++     style="opacity:1;fill:#030609;stroke-width:1" />
+@@ -3617 +3617 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3625 +3625 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3633 +3633 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3640 +3640 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3648 +3648 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3656 +3656 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3666 +3666 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3677 +3677 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3688 +3688 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3696 +3696 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3704 +3704 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3712 +3712 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3719 +3719 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3727 +3727 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3735 +3735 @@
+-     style="opacity:1;fill:#1e222a;fill-opacity:1" />
++     style="opacity:1;fill:#0A1118;fill-opacity:1" />
+@@ -3745 +3745 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3764 +3764 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3767 +3767 @@
+-       fill="#b6b6b6"
++       fill="#D7E0E7"
+@@ -3784 +3784 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -3796 +3796 @@
+-     style="opacity:1;fill:#0f1115;fill-opacity:1" />
++     style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3803 +3803 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3811 +3811 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3819 +3819 @@
+-       style="fill:#0f1115;fill-opacity:1;opacity:1" />
++       style="fill:#030609;fill-opacity:1;opacity:1" />
+@@ -3827 +3827 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3835 +3835 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3843 +3843 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3851 +3851 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3859 +3859 @@
+-       style="opacity:1;fill:#0f1115;fill-opacity:1" />
++       style="opacity:1;fill:#030609;fill-opacity:1" />
+@@ -3875 +3875 @@
+-       style="opacity:1;fill:#0f1115;stroke-width:0.755923" />
++       style="opacity:1;fill:#030609;stroke-width:0.755923" />
+@@ -3879 +3879 @@
+-       style="opacity:0.08;fill:#ffffff;stroke-width:0.755923" />
++       style="opacity:0.08;fill:#D7E0E7;stroke-width:0.755923" />
+@@ -3883 +3883 @@
+-       style="opacity:0.75;fill:#000000;stroke-width:0.755923" />
++       style="opacity:0.75;fill:#030609;stroke-width:0.755923" />
+@@ -3891 +3891 @@
+-     fill="#b74aff" />
++     fill="#00C8FF" />
+@@ -3899 +3899 @@
+-     fill="#b74aff" />
++     fill="#00C8FF" />
+@@ -3906 +3906 @@
+-     fill="#b74aff" />
++     fill="#00C8FF" />
+@@ -3914 +3914 @@
+-     fill="#b74aff" />
++     fill="#00C8FF" />
+@@ -3924 +3924 @@
+-       style="opacity:0.75;fill:#000000;fill-rule:nonzero;shape-rendering:auto"
++       style="opacity:0.75;fill:#030609;fill-rule:nonzero;shape-rendering:auto"
+@@ -3929 +3929 @@
+-       style="opacity:1;fill:#0f1115" />
++       style="opacity:1;fill:#030609" />
+@@ -3932 +3932 @@
+-       style="opacity:0.08;fill:#ffffff;fill-rule:nonzero;shape-rendering:auto"
++       style="opacity:0.08;fill:#D7E0E7;fill-rule:nonzero;shape-rendering:auto"
+@@ -3949 +3949 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -3960 +3960 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -3971 +3971 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4023 +4023 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4034 +4034 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4099 +4099 @@
+-       style="fill:#ffffff;opacity:0.25" />
++       style="fill:#D7E0E7;opacity:0.25" />
+@@ -4110 +4110 @@
+-       style="fill:#ffffff;opacity:0.25" />
++       style="fill:#D7E0E7;opacity:0.25" />
+@@ -4255 +4255 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4266 +4266 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4305 +4305 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -4316 +4316 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -4355 +4355 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4366 +4366 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4401 +4401 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4412 +4412 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4429 +4429 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4440 +4440 @@
+-       style="fill:#ffffff;opacity:0.2" />
++       style="fill:#D7E0E7;opacity:0.2" />
+@@ -4457 +4457 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -4468 +4468 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -4479 +4479 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4483 +4483 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4487 +4487 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4491 +4491 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4495 +4495 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4499 +4499 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4503 +4503 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4507 +4507 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4511 +4511 @@
+-     style="opacity:0.2;fill:#ffffff" />
++     style="opacity:0.2;fill:#D7E0E7" />
+@@ -4515 +4515 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4519 +4519 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4523 +4523 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4527 +4527 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4531 +4531 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4535 +4535 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4539 +4539 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4543 +4543 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4547 +4547 @@
+-     style="opacity:0.15;fill:#ffffff" />
++     style="opacity:0.15;fill:#D7E0E7" />
+@@ -4567 +4567 @@
+-       style="fill:#ffffff;opacity:0.1" />
++       style="fill:#D7E0E7;opacity:0.1" />
+@@ -4590 +4590 @@
+-       fill="#212121"
++       fill="#030609"
+@@ -4724 +4724 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4739 +4739 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4757 +4757 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4775 +4775 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4801 +4801 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4816 +4816 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4831 +4831 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4850 +4850 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4865 +4865 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4883 +4883 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4901 +4901 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4927 +4927 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4942 +4942 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4957 +4957 @@
+-       style="opacity:0.1;fill:#ffffff" />
++       style="opacity:0.1;fill:#D7E0E7" />
+@@ -4973 +4973 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -4985 +4985 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5001 +5001 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5020 +5020 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5039 +5039 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5058 +5058 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5077 +5077 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5093 +5093 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5109 +5109 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -5114 +5114 @@
+-     style="fill:#242932;fill-opacity:1" />
++     style="fill:#030609;fill-opacity:1" />
+@@ -5121 +5121 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -5124 +5124 @@
+-       style="fill:#ffffff;fill-opacity:1;opacity:0.12"
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.12"
+@@ -5134 +5134 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -5138 +5138 @@
+-       style="fill:#ffffff;opacity:0.12" />
++       style="fill:#D7E0E7;opacity:0.12" />
+@@ -5194 +5194 @@
+-       style="opacity:0.15;fill:#ffffff;stroke-width:0.999546"
++       style="opacity:0.15;fill:#D7E0E7;stroke-width:0.999546"
+@@ -5204 +5204 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -5213 +5213 @@
+-       style="opacity:0.15;fill:#ffffff;stroke-width:0.999546"
++       style="opacity:0.15;fill:#D7E0E7;stroke-width:0.999546"
+@@ -5223 +5223 @@
+-       style="fill:#242932;fill-opacity:1;stroke-width:0.8" />
++       style="fill:#030609;fill-opacity:1;stroke-width:0.8" />
+@@ -5248 +5248 @@
+-       style="fill:#242932;fill-opacity:1;stroke-width:1.2" />
++       style="fill:#030609;fill-opacity:1;stroke-width:1.2" />
+@@ -5269 +5269 @@
+-       style="fill:#242932;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -5277 +5277 @@
+-       style="opacity:0;fill:#ffffff"
++       style="opacity:0;fill:#D7E0E7"
+@@ -5282 +5282 @@
+-       style="fill:#dfdfdf;fill-opacity:1;opacity:0.35"
++       style="fill:#D7E0E7;fill-opacity:1;opacity:0.35"
+@@ -5294 +5294 @@
+-       style="opacity:0;fill:#ffffff"
++       style="opacity:0;fill:#D7E0E7"
+@@ -5298 +5298 @@
+-       style="fill:#dfdfdf;fill-opacity:1"
++       style="fill:#D7E0E7;fill-opacity:1"
+@@ -5309 +5309 @@
+-       style="opacity:0;fill:#ffffff"
++       style="opacity:0;fill:#D7E0E7"
+@@ -5317 +5317 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -5323 +5323 @@
+-       style="opacity:1;fill:#393e46;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;fill-opacity:1"
+@@ -5334 +5334 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5345 +5345 @@
+-       style="opacity:1;fill:#393e46;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;fill-opacity:1"
+@@ -5369 +5369 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5425 +5425 @@
+-       style="opacity:1;fill:#393e46;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;fill-opacity:1"
+@@ -5436 +5436 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5455 +5455 @@
+-       style="opacity:1;fill:#393e46;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;fill-opacity:1"
+@@ -5475 +5475 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5488 +5488 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5503 +5503 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5516 +5516 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5528 +5528 @@
+-       style="opacity:1;fill:#393e46;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;fill-opacity:1"
+@@ -5549 +5549 @@
+-       style="opacity:1;fill:#393e46;fill-opacity:1"
++       style="opacity:1;fill:#0A1118;fill-opacity:1"
+@@ -5570 +5570 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5581 +5581 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5592 +5592 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5604 +5604 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5612 +5612 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5621 +5621 @@
+-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000;opacity:0.1"
++       style="fill:#D7E0E7;fill-opacity:1;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609;opacity:0.1"
+@@ -5629 +5629 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5636 +5636 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5648 +5648 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5660 +5660 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5671 +5671 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5678 +5678 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0144189;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0144189;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5689 +5689 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5696 +5696 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0203914;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0203914;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5708 +5708 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5712 +5712 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5720 +5720 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5725 +5725 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0943911;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5734 +5734 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5738 +5738 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5746 +5746 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5750 +5750 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5757 +5757 @@
+-       style="opacity:0.1;fill:#ffffff;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.1;fill:#D7E0E7;stroke:none;stroke-width:0.0249743;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5765 +5765 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0144189;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0144189;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5777 +5777 @@
+-       style="opacity:0.1;fill:#ffffff"
++       style="opacity:0.1;fill:#D7E0E7"
+@@ -5785 +5785 @@
+-       style="opacity:0.15;fill:#ffffff;stroke:none;stroke-width:0.0203914;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
++       style="opacity:0.15;fill:#D7E0E7;stroke:none;stroke-width:0.0203914;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#030609"
+@@ -5831 +5831 @@
+-       style="opacity:0.2;fill:#ffffff;stroke-width:0.914286" />
++       style="opacity:0.2;fill:#D7E0E7;stroke-width:0.914286" />
+@@ -5845 +5845 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5847 +5847 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.15" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.15" />
+@@ -5861 +5861 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5863 +5863 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.15" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.15" />
+@@ -5877 +5877 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5879 +5879 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.15" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.15" />
+@@ -5893 +5893 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5895 +5895 @@
+-       style="fill:#ffffff;opacity:0.15" />
++       style="fill:#D7E0E7;opacity:0.15" />
+@@ -5909 +5909 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5911 +5911 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.35" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.35" />
+@@ -5925 +5925 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5927 +5927 @@
+-       style="fill:#ffffff;opacity:0.35" />
++       style="fill:#D7E0E7;opacity:0.35" />
+@@ -5941 +5941 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5943 +5943 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.35" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.35" />
+@@ -5957 +5957 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5959 +5959 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.35" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.35" />
+@@ -5973 +5973 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5975 +5975 @@
+-       style="stroke-width:0.888889;fill:#ffffff;opacity:0.35" />
++       style="stroke-width:0.888889;fill:#D7E0E7;opacity:0.35" />
+@@ -5989 +5989 @@
+-       fill="#c1c1c1"
++       fill="#D7E0E7"
+@@ -5991 +5991 @@
+-       style="fill:#ffffff;opacity:0.35" />
++       style="fill:#D7E0E7;opacity:0.35" />
+@@ -6001 +6001 @@
+-       style="opacity:0.12;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.12;fill:#D7E0E7;fill-opacity:1" />
+@@ -6007 +6007 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6018 +6018 @@
+-       style="opacity:0.12;fill:#ffffff;stroke-width:1" />
++       style="opacity:0.12;fill:#D7E0E7;stroke-width:1" />
+@@ -6024 +6024 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6035 +6035 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -6047 +6047 @@
+-       style="opacity:0.15;fill:#ffffff;fill-opacity:1" />
++       style="opacity:0.15;fill:#D7E0E7;fill-opacity:1" />
+@@ -6049 +6049 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6062 +6062 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6077 +6077 @@
+-       style="opacity:0.15;fill:#ffffff;fill-opacity:1"
++       style="opacity:0.15;fill:#D7E0E7;fill-opacity:1"
+@@ -6084 +6084 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6099 +6099 @@
+-       style="opacity:0.15;fill:#ffffff;fill-opacity:1"
++       style="opacity:0.15;fill:#D7E0E7;fill-opacity:1"
+@@ -6106 +6106 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6123 +6123 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6140 +6140 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6157 +6157 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6168 +6168 @@
+-       style="opacity:0.12;fill:#ffffff;stroke-width:1" />
++       style="opacity:0.12;fill:#D7E0E7;stroke-width:1" />
+@@ -6174 +6174 @@
+-       style="opacity:0;fill:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
++       style="opacity:0;fill:#030609;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+@@ -6185 +6185 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -6189 +6189 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6193 +6193 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6197 +6197 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6202 +6202 @@
+-     style="opacity:0.12;fill:#ffffff;stroke-width:0.8" />
++     style="opacity:0.12;fill:#D7E0E7;stroke-width:0.8" />
+@@ -6206 +6206 @@
+-     style="opacity:0.2;fill:#ffffff;stroke-width:0.8" />
++     style="opacity:0.2;fill:#D7E0E7;stroke-width:0.8" />
+@@ -6210 +6210 @@
+-     style="opacity:0.12;fill:#ffffff;stroke-width:0.8" />
++     style="opacity:0.12;fill:#D7E0E7;stroke-width:0.8" />
+@@ -6214 +6214 @@
+-     style="opacity:0.2;fill:#ffffff;stroke-width:0.8" />
++     style="opacity:0.2;fill:#D7E0E7;stroke-width:0.8" />
+@@ -6217 +6217 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6221 +6221 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6225 +6225 @@
+-     style="fill:#89a3c2;fill-opacity:1"
++     style="fill:#00C8FF;fill-opacity:1"
+@@ -6230 +6230 @@
+-     style="fill:#000000;fill-opacity:1" />
++     style="fill:#030609;fill-opacity:1" />
+@@ -6237 +6237 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6245 +6245 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6253 +6253 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6261 +6261 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6269 +6269 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6277 +6277 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6285 +6285 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6293 +6293 @@
+-       style="fill:#000000;fill-opacity:1" />
++       style="fill:#030609;fill-opacity:1" />
+@@ -6306 +6306 @@
+-       style="fill:#dfdfdf"
++       style="fill:#D7E0E7"
+@@ -6323 +6323 @@
+-       style="opacity:0.08;fill:#ffffff" />
++       style="opacity:0.08;fill:#D7E0E7" />
+@@ -6327 +6327 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -6344 +6344 @@
+-       style="opacity:0.2;fill:#ffffff" />
++       style="opacity:0.2;fill:#D7E0E7" />
+@@ -6348 +6348 @@
+-       style="fill:#ffffff" />
++       style="fill:#D7E0E7" />
+@@ -6362 +6362 @@
+-       style="fill:#dfdfdf;opacity:0.35"
++       style="fill:#D7E0E7;opacity:0.35"

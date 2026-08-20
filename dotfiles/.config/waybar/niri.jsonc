@@ -1,0 +1,37 @@
+{
+  "include": [
+    "~/.config/waybar/common.jsonc"
+  ],
+  "modules-left": [
+    "niri/workspaces"
+  ],
+  "modules-center": [
+    "niri/window",
+    "mpris"
+  ],
+  "modules-right": [
+    "niri/language",
+    "idle_inhibitor",
+    "wireplumber",
+    "wireplumber#source",
+    "power-profiles-daemon",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "niri/workspaces": {
+    "format": "{value}"
+  },
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 50
+  },
+  "niri/language": {
+    "format": "{short}",
+    "on-click": "niri msg action switch-layout next"
+  }
+}

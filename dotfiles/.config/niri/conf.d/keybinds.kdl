@@ -1,0 +1,28 @@
+binds {
+    Super+Alt+L hotkey-overlay-title="Lock the screen" {
+        spawn "gtklock" "-d"
+    }
+
+    XF86AudioPlay allow-when-locked=true {
+        spawn "playerctl" "--player=playerctld" "play-pause"
+    }
+    XF86AudioStop allow-when-locked=true {
+        spawn "playerctl" "--player=playerctld" "stop"
+    }
+    XF86AudioPrev allow-when-locked=true {
+        spawn "playerctl" "--player=playerctld" "previous"
+    }
+    XF86AudioNext allow-when-locked=true {
+        spawn "playerctl" "--player=playerctld" "next"
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "exec \"$HOME/.local/bin/dotfiles-microphone\" toggle"
+    }
+
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "+5%"
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "--min-value=1" "set" "5%-"
+    }
+}

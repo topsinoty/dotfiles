@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Resolve the XDG picture directory at launch instead of fixing it in mpv.conf.
+set -eu
+
+log_event()
+{
+    logger --tag dotfiles-mpv -- "$1" || true
+}
+
+if ! command -v mpv >/dev/null 2>&1; then
+    log_event 'MPV is unavailable'
+    printf '%s\n' 'dotfiles-mpv requires mpv' >&2
+    exit 1
+fi
+
+pictures=
+
+if command -v xdg-user-dir >/dev/null 2>&1; then
+    pictures=$(xdg-user-dir PICTURES)
+fi
+
+pictures=${pictures:-$HOME/Pictures}
+screenshots=$pictures/Screenshots
+
+mkdir -p "$screenshots"
+log_event 'starting MPV'
+exec mpv --screenshot-directory="$screenshots" "$@"

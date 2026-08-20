@@ -1,0 +1,122 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 0,
+  "mpris": {
+    "player": "playerctld",
+    "format": "{status_icon} {dynamic}",
+    "format-stopped": "",
+    "dynamic-order": [
+      "title",
+      "artist"
+    ],
+    "dynamic-len": 32,
+    "title-len": 24,
+    "artist-len": 16,
+    "status-icons": {
+      "playing": "▶",
+      "paused": "Ⅱ",
+      "stopped": "■"
+    },
+    "on-click": "playerctl --player=playerctld play-pause",
+    "on-click-middle": "playerctl --player=playerctld previous",
+    "on-click-right": "playerctl --player=playerctld next"
+  },
+  "wireplumber": {
+    "format": "VOL {volume}%",
+    "format-muted": "VOL MUTE",
+    "tooltip-format": "{node_name}",
+    "max-volume": 100,
+    "scroll-step": 5,
+    "on-click": "pavucontrol"
+  },
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": "MIC {volume}%",
+    "format-muted": "MIC OFF",
+    "tooltip-format": "{node_name}",
+    "max-volume": 100,
+    "scroll-step": 5,
+    "on-click": "~/.local/bin/dotfiles-microphone toggle",
+    "on-click-right": "pavucontrol --tab=4"
+  },
+  "power-profiles-daemon": {
+    "format": "PWR {icon}",
+    "tooltip-format": "{profile}",
+    "format-icons": {
+      "default": "BAL",
+      "performance": "MAX",
+      "balanced": "BAL",
+      "power-saver": "LOW"
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "ON",
+      "deactivated": "OFF"
+    }
+  },
+  "network": {
+    "format-wifi": "NET {signalStrength}%",
+    "format-ethernet": "NET LAN",
+    "format-disconnected": "NET DOWN",
+    "tooltip-format": "{ifname}  {ipaddr}/{cidr}\nUP {bandwidthUpBytes}  DOWN {bandwidthDownBytes}",
+    "tooltip-format-wifi": "{essid}  {ipaddr}/{cidr}\nUP {bandwidthUpBytes}  DOWN {bandwidthDownBytes}",
+    "on-click": "nm-connection-editor"
+  },
+  "cpu": {
+    "format": "CPU {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 85
+    }
+  },
+  "memory": {
+    "format": "MEM {percentage}%",
+    "tooltip-format": "RAM {used:0.1f}/{total:0.1f}G\nSWAP {swapUsed:0.1f}/{swapTotal:0.1f}G",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    }
+  },
+  "temperature": {
+    "format": "TEMP {temperatureC}°C",
+    "critical-threshold": 80,
+    "tooltip": false
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-full": "󰁹 FULL",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}  {power}W",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d %b  %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8
+  }
+}

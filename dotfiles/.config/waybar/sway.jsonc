@@ -1,0 +1,41 @@
+{
+  "include": [
+    "~/.config/waybar/common.jsonc"
+  ],
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window",
+    "mpris"
+  ],
+  "modules-right": [
+    "sway/language",
+    "idle_inhibitor",
+    "wireplumber",
+    "wireplumber#source",
+    "power-profiles-daemon",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "format": "{name}"
+  },
+  "sway/mode": {
+    "format": "  MODE  {}  "
+  },
+  "sway/window": {
+    "format": "{title}",
+    "max-length": 50
+  },
+  "sway/language": {
+    "format": "{short}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+  }
+}

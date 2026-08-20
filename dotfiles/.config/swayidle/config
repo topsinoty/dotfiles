@@ -1,0 +1,4 @@
+timeout 300 'gtklock -d'
+timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+lock 'gtklock -d'
+before-sleep 'gtklock -d'

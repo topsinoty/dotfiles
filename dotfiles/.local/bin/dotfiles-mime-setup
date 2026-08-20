@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Restrict reproducible MIME changes to web content.
+set -eu
+
+log_event()
+{
+    logger --tag dotfiles-mime-setup -- "$1" || true
+}
+
+browser=${1:-}
+
+if [ -z "$browser" ]; then
+    browser=$(xdg-settings get default-web-browser)
+fi
+
+if [ -z "$browser" ]; then
+    log_event 'no browser desktop entry could be resolved'
+    printf 'usage: %s browser.desktop\n' "$0" >&2
+    exit 1
+fi
+
+for mime_type in text/html x-scheme-handler/http x-scheme-handler/https; do
+    xdg-mime default "$browser" "$mime_type"
+done
+
+log_event "registered $browser for web content"
+printf 'Web content opens with %s\n' "$browser"
