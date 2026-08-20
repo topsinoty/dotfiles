@@ -62,10 +62,10 @@ linear: finish each numbered section before continuing.
 
 ### 1. Bootstrap and clone
 
-Git and the DNF5 COPR command are the only bootstrap requirements:
+Git and the dnf COPR command are the only bootstrap requirements:
 
 ```sh
-sudo dnf5 install git dnf5-plugins
+sudo dnf install git dnf-plugins
 
 mkdir -p ~/.local/src
 git clone https://github.com/topsinoty/dotfiles.git ~/.local/src/dotfiles
@@ -78,12 +78,12 @@ directory.
 ### 2. Enable package sources and install packages
 
 ```sh
-sudo dnf5 copr enable atim/starship
-sudo dnf5 copr enable jdxcode/mise
-sudo dnf5 copr enable lihaohong/yazi
-sudo dnf5 copr enable alternateved/keyd
+sudo dnf copr enable atim/starship
+sudo dnf copr enable jdxcode/mise
+sudo dnf copr enable lihaohong/yazi
+sudo dnf copr enable alternateved/keyd
 
-xargs sudo dnf5 install < manifest/fedora-packages.txt
+xargs sudo dnf install < manifest/fedora-packages.txt
 ```
 
 Starship, Mise, Yazi, and keyd use the listed Fedora COPRs.
@@ -96,7 +96,7 @@ The configured browser is Google Chrome Stable. Install its signed RPM, which
 also registers Google's update repository:
 
 ```sh
-sudo dnf5 install \
+sudo dnf install \
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 ```
 
@@ -226,7 +226,7 @@ runtime.
 
 Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
 
-Install the DNF5 and greetd files:
+Install the dnf and greetd files:
 
 ```sh
 if sudo test -e /etc/greetd/config.toml && \
@@ -236,7 +236,7 @@ if sudo test -e /etc/greetd/config.toml && \
 fi
 
 sudo install -Dm0644 system/dnf/80-dotfiles.conf \
-  /etc/dnf/libdnf5.conf.d/80-dotfiles.conf
+  /etc/dnf/libdnf.conf.d/80-dotfiles.conf
 sudo install -Dm0644 system/greetd/config.toml /etc/greetd/config.toml
 
 if ! grep -qxF 'QT_STYLE_OVERRIDE=kvantum' /etc/environment; then
@@ -253,7 +253,7 @@ sudo localectl set-x11-keymap 'us,ee' '' '' 'grp:alt_shift_toggle'
 sudo systemctl enable --now NetworkManager bluetooth power-profiles-daemon
 ```
 
-The DNF5 drop-in changes only the default prompt answer and parallel download
+The dnf drop-in changes only the default prompt answer and parallel download
 count. Tuigreet discovers the installed session desktop files and remembers the
 last session per user. Before enabling greetd, disable the machine's current
 display manager, then enable greetd for the next boot:
@@ -552,7 +552,7 @@ zsh -n ~/.zshrc
 nano --rcfile ~/.nanorc --version >/dev/null
 yazi --debug >/dev/null
 niri validate
-dnf5 --dump-main-config | grep -E '^(defaultyes|max_parallel_downloads) ='
+dnf --dump-main-config | grep -E '^(defaultyes|max_parallel_downloads) ='
 sudo keyd check /etc/keyd/dotfiles-emergency.conf
 systemctl is-enabled \
   greetd \
@@ -683,7 +683,7 @@ sudo systemctl disable greetd keyd
 sudo systemctl disable --now \
   snapper-timeline.timer snapper-cleanup.timer btrfs-scrub.timer
 
-sudo rm /etc/dnf/libdnf5.conf.d/80-dotfiles.conf \
+sudo rm /etc/dnf/libdnf.conf.d/80-dotfiles.conf \
   /etc/keyd/dotfiles-emergency.conf \
   /usr/local/libexec/dotfiles-session-rescue \
   /etc/default/grub.d/80-dotfiles.cfg \
