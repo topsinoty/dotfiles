@@ -1,7 +1,4 @@
-sway
-niri
 NetworkManager
-xwayland-satellite
 swayidle
 wireplumber
 pipewire-utils
@@ -72,8 +69,6 @@ kvantum
 kvantum-qt5
 xdg-desktop-portal
 xdg-desktop-portal-gtk
-xdg-desktop-portal-wlr
-xdg-desktop-portal-gnome
 wlsunset
 gtk-layer-shell
 python3-gobject

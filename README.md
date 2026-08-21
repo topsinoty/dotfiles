@@ -1,21 +1,30 @@
 # dotfiles
 
-Personal Fedora Wayland configuration layered over
-[Colloid GTK](https://github.com/vinceliuice/Colloid-gtk-theme) and
-[Colloid KDE](https://github.com/vinceliuice/Colloid-kde) by Vince Liuice.
-Restoration uses personal GitHub forks of both projects so the pinned source
-remains available independently of the upstream repositories.
+Reproducible personal Fedora Wayland configuration for Sway, Niri, or both.
 
-This is not a standalone theme and does not claim authorship over Colloid. GTK
-supports cascading CSS, so the GTK part of this repository contains only a
-small override. Kvantum cannot inherit another theme in the same way, so the Qt
-variant is produced locally by applying AI-assisted color patches to an
-installed copy of `ColloidNordDark`. The resulting files are modified Colloid
-works and remain subject to Colloid's GPL-3.0 license.
+## Requirements
 
-The original files in this repository are published without a license.
+- Fedora 44 Everything installed with automatic Btrfs partitioning.
+- A working graphical environment, browser, and network connection.
+- A user allowed to run `sudo`.
+- Run the installation sections in order from the same terminal.
 
-## Layout
+If a browser is not already installed, install one. For example, choose Firefox:
+
+```sh
+sudo dnf install firefox
+```
+
+Or install Google Chrome Stable from its signed RPM:
+
+```sh
+sudo dnf install \
+  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+```
+
+The browser is only used to read this guide and is not managed by the repository.
+
+## Repository layout
 
 ```text
 home/       GNU Stow package mirroring the user's home directory
@@ -26,44 +35,9 @@ patches/    Deltas applied to Fedora compositor and Colloid assets
 profiles/   Optional filesystem-shaped hardware overlays
 ```
 
-Small, bounded helpers live under `home/.local/bin` for actions that cannot
-be expressed cleanly in application configuration. Compositors start ordinary
-session programs directly; there is no custom service manager or portability
-framework.
+## Installation
 
-The Stow package also owns the Bash and Zsh startup files, Git configuration,
-Starship prompt, and Nano configuration. Zsh is primary; Bash remains a
-supported fallback.
-
-`manifest/colloid-revisions.env` defines the Colloid fork revisions required by
-the GTK override and Kvantum patches. `manifest/external-revisions.env` defines
-the external font inputs, `nwg-displays` fork, and Argon GRUB artwork revisions.
-Use those revisions for a reproducible restoration; update them only as part of
-a deliberate upgrade.
-
-Sway is composed from independent modules:
-
-```text
-~/.config/sway/config
-├── conf.d/settings.conf
-├── generated/base.conf      patched from /etc/sway/config
-├── conf.d/input.conf
-├── conf.d/keybinds.conf
-├── conf.d/windows.conf
-├── conf.d/theme.conf
-└── conf.d/extensions.conf
-```
-
-The repository contains no wallpaper, swaylock configuration, full replacement
-Sway config, or copied Colloid SVG.
-
-## Install on Fedora 44 Everything
-
-Start from Fedora Everything with automatic Btrfs partitioning, a network
-connection, and a user allowed to run `sudo`. Complete the numbered sections in
-order.
-
-### 1. Bootstrap and clone
+### 1. Install Git and clone
 
 Git and the DNF COPR command are the only bootstrap requirements:
 
@@ -80,6 +54,8 @@ directory.
 ### 2. Enable package sources and install packages
 
 ```sh
+cd ~/.dotfiles
+
 sudo dnf copr enable atim/starship
 sudo dnf copr enable jdxcode/mise
 sudo dnf copr enable lihaohong/yazi
@@ -100,12 +76,18 @@ by nwg-piotr. It is installed separately from a pinned revision in the
 [personal fork](https://github.com/topsinoty/nwg-displays), which provides the
 required Niri support.
 
-The configured browser is Google Chrome Stable. Install its signed RPM, which
-also registers Google's update repository:
+Install one or both compositor package sets:
 
 ```sh
-sudo dnf install \
-  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+# Sway
+cd ~/.dotfiles
+xargs sudo dnf install < manifest/sway-packages.txt
+```
+
+```sh
+# Niri
+cd ~/.dotfiles
+xargs sudo dnf install < manifest/niri-packages.txt
 ```
 
 ### 3. Back up conflicting files on an existing home
@@ -142,6 +124,8 @@ dconf dump /org/gnome/desktop/interface/ \
 Load the pinned source revisions:
 
 ```sh
+cd ~/.dotfiles
+
 . ./manifest/colloid-revisions.env
 . ./manifest/external-revisions.env
 ```
@@ -259,6 +243,8 @@ sessions.
 Install the system-level Ctrl-Alt-Delete fallback, then start keyd:
 
 ```sh
+cd ~/.dotfiles
+
 sudo install -Dm0755 usr/local/libexec/dotfiles-session-rescue \
   /usr/local/libexec/dotfiles-session-rescue
 sudo install -Dm0644 etc/keyd/dotfiles-emergency.conf \
@@ -278,6 +264,8 @@ Inspect rescue decisions with `sudo journalctl -t dotfiles-session-rescue`.
 Install the DNF and greetd files:
 
 ```sh
+cd ~/.dotfiles
+
 if sudo test -e /etc/greetd/config.toml && \
   ! sudo test -e /etc/greetd/config.toml.before-dotfiles; then
   sudo cp -a /etc/greetd/config.toml \
@@ -381,6 +369,8 @@ patch after saving `/etc/default/grub`. Then select Fedora's stock Plymouth
 spinner and regenerate the derived files:
 
 ```sh
+cd ~/.dotfiles
+
 if sudo test -e /boot/grub2/splash0.png && \
   ! sudo test -e /boot/grub2/splash0.png.before-dotfiles; then
   sudo cp --archive /boot/grub2/splash0.png \
@@ -435,21 +425,15 @@ Fedora package.
 From the repository root:
 
 ```sh
+cd ~/.dotfiles
+
 stow --no-folding --target="$HOME" home
 dotfiles-vscode-setup apply
 ya pkg install
-mkdir -p ~/.config/dotfiles/hardware.d
-install -Dm0644 profiles/laptop/home/.config/sway/outputs \
-  ~/.config/sway/outputs
-install -Dm0644 profiles/laptop/home/.config/niri/dotfiles-hardware.kdl \
-  ~/.config/niri/dotfiles-hardware.kdl
-touch ~/.config/sway/workspaces ~/.config/dotfiles/hardware.d/sway.conf
 ```
 
 `--no-folding` is required so generated files cannot be written through a
-directory symlink into the repository. The laptop profile records the built-in
-`eDP-1` display at scale 1. Skip its two `install` commands on other hardware
-and let `nwg-displays` create local output configuration instead.
+directory symlink into the repository.
 
 The VS Code helper recursively merges the small authored settings layer into
 the existing user settings instead of replacing them. The layer follows the
@@ -466,10 +450,19 @@ automount daemon.
 
 ### 8. Build the compositor bases
 
-The checked-in Sway config is only an include graph. Build its base from the
-installed Fedora config and apply the small patch:
+Complete the subsection for every installed compositor. The laptop profile is
+for the built-in `eDP-1` display at scale 1; skip its `install` command on other
+hardware and let `nwg-displays` generate the local output configuration.
+
+#### Sway
 
 ```sh
+cd ~/.dotfiles
+
+mkdir -p ~/.config/dotfiles/hardware.d
+install -Dm0644 profiles/laptop/home/.config/sway/outputs \
+  ~/.config/sway/outputs
+touch ~/.config/sway/workspaces ~/.config/dotfiles/hardware.d/sway.conf
 mkdir -p ~/.config/sway/generated
 cp /etc/sway/config ~/.config/sway/generated/base.conf
 patch ~/.config/sway/generated/base.conf < patches/sway-stock.patch
@@ -485,10 +478,13 @@ uses `~/.config/niri/monitor.kdl` and adds its native include itself. Generate
 them only when the display layout needs changing. They are not repository
 inputs.
 
-Create Niri's base from its version-matched packaged example and apply the
-reviewed removals and final include:
+#### Niri
 
 ```sh
+cd ~/.dotfiles
+
+install -Dm0644 profiles/laptop/home/.config/niri/dotfiles-hardware.kdl \
+  ~/.config/niri/dotfiles-hardware.kdl
 cp /usr/share/doc/niri/default-config.kdl ~/.config/niri/config.kdl
 patch ~/.config/niri/config.kdl < patches/niri-stock.patch
 ```
@@ -533,6 +529,8 @@ the shared authored override.
 Copy the installed Colloid files, then apply only the recorded deltas:
 
 ```sh
+cd ~/.dotfiles
+
 mkdir -p ~/.config/Kvantum/ColloidNordDark-dotfiles
 cp ~/.config/Kvantum/ColloidNord/ColloidNordDark.kvconfig \
   ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.kvconfig
@@ -546,13 +544,17 @@ patch ~/.config/Kvantum/ColloidNordDark-dotfiles/ColloidNordDark-dotfiles.svg \
 
 These generated files are intentionally outside Git.
 
-### 11. Configure user choices and validate before login
+### 11. Configure optional user choices
 
-Apply the browser's existing desktop entry only to web content, and configure
-the optional location-dependent night light:
+Optionally reapply the browser already selected by the desktop to web content:
 
 ```sh
-dotfiles-mime-setup google-chrome.desktop
+dotfiles-mime-setup
+```
+
+Optionally configure location-dependent night light:
+
+```sh
 dotfiles-location-setup
 ```
 
@@ -566,12 +568,21 @@ files differ only where each compositor's native display-power command differs.
 Waybar configurations share presentation and ordinary modules while retaining
 native workspace, window, and language modules.
 
+## Static validation
+
 ```sh
+cd ~/.dotfiles
+
 xargs rpm -q < manifest/fedora-packages.txt
+if command -v sway >/dev/null; then
+  xargs rpm -q < manifest/sway-packages.txt
+fi
+if command -v niri >/dev/null; then
+  xargs rpm -q < manifest/niri-packages.txt
+fi
 test "$(fc-match 'JetBrainsMono Nerd Font Mono' --format '%{family[0]}')" = \
   'JetBrainsMono Nerd Font Mono'
-test "$(xdg-mime query default x-scheme-handler/https)" = \
-  google-chrome.desktop
+test -n "$(xdg-settings get default-web-browser)"
 test "$(gsettings get org.gnome.desktop.interface gtk-theme)" = \
   "'Colloid-Dark'"
 test "$(gsettings get org.gnome.desktop.interface font-name)" = \
@@ -590,7 +601,9 @@ bash -n ~/.bashrc
 zsh -n ~/.zshrc
 nano --rcfile ~/.nanorc --version >/dev/null
 yazi --debug >/dev/null
-niri validate
+if command -v niri >/dev/null; then
+  niri validate
+fi
 dnf --dump-main-config | grep -E '^(defaultyes|max_parallel_downloads) ='
 sudo keyd check /etc/keyd/dotfiles-emergency.conf
 systemctl is-enabled \
@@ -621,10 +634,10 @@ Reboot after all static checks pass:
 sudo reboot
 ```
 
-### 12. Validate the graphical session
+## First login validation
 
-Tuigreet discovers both Sway and Niri from their packaged session files. Log
-into either one, then confirm the shared desktop services:
+Log into an installed compositor from Tuigreet, then confirm the shared desktop
+services:
 
 ```sh
 systemctl --user is-active \
@@ -638,6 +651,7 @@ pgrep -af \
 Under Sway, validate and reload its active configuration:
 
 ```sh
+systemctl --user is-active xdg-desktop-portal-wlr.service
 swaymsg -t get_version
 sway -C -c ~/.config/sway/config
 swaymsg reload
@@ -646,6 +660,7 @@ swaymsg reload
 Under Niri, confirm that its IPC is available:
 
 ```sh
+systemctl --user is-active xdg-desktop-portal-gnome.service
 niri msg version
 ```
 
@@ -653,18 +668,36 @@ The location file is optional and machine-specific. `nwg-displays` is also
 on-demand: run it only when output layout needs configuring, then validate the
 generated file with `sway -C` or `niri validate`.
 
-## Updating after Fedora or Colloid changes
+## Maintenance
+
+### Updating Fedora or Colloid inputs
 
 Re-copy the packaged Sway or Niri base, or the installed Colloid assets, and
 reapply the corresponding patch. If `patch` rejects a hunk, inspect the upstream
 change and refresh the patch instead of forcing it. Update a revision manifest
 only after reviewing its source and the affected patch or checksum.
 
+### Migrating an existing configuration
+
+Before Stowing:
+
+1. Restore the complete Colloid GTK stylesheet as the GTK foundation.
+2. Remove copied theme directories and their GTK imports.
+3. Remove wallpaper references and swaylock configuration.
+4. Back up and remove standalone Foot, Fuzzel, Mako, Waybar, Yazi, and gtklock
+   files that would conflict with Stow.
+5. Follow the relevant compositor, GTK, and Kvantum patch steps above.
+
+Keep generated output in `~/.config`; the repository contains only authored
+configuration and reviewable patches.
+
 ## Reverting
 
 Remove the generated package and integration state before unstowing:
 
 ```sh
+cd ~/.dotfiles
+
 ya pkg delete yazi-rs/plugins:mount
 dotfiles-vscode-setup restore
 
@@ -779,16 +812,29 @@ silently destroy recovery points.
 Disable `bluetooth` or `power-profiles-daemon` only if this setup enabled them
 on a machine where they were previously disabled.
 
-## Migrating an existing configuration
+## Design notes and attribution
 
-Before Stowing:
+The desktop theme is layered over
+[Colloid GTK](https://github.com/vinceliuice/Colloid-gtk-theme) and
+[Colloid KDE](https://github.com/vinceliuice/Colloid-kde) by Vince Liuice.
+Personal GitHub forks keep the pinned sources available independently of the
+upstream repositories.
 
-1. Restore the complete Colloid GTK stylesheet as the GTK foundation.
-2. Remove copied theme directories and their GTK imports.
-3. Remove wallpaper references and swaylock configuration.
-4. Back up and remove standalone Foot, Fuzzel, Mako, Waybar, Yazi, and gtklock
-   files that would conflict with Stow.
-5. Follow the Sway, GTK, and Kvantum patch steps above.
+This repository is not a standalone theme and does not claim authorship over
+Colloid. GTK supports cascading CSS, so the GTK files contain a small override.
+Kvantum cannot inherit another theme in the same way, so its local variant is
+created by applying the recorded patches to `ColloidNordDark`. The resulting
+files remain subject to Colloid's GPL-3.0 license. Original files in this
+repository are published without a license.
 
-Keep generated output in `~/.config`; the repository contains only authored
-configuration and reviewable patches.
+Small helpers under `home/.local/bin` cover actions that cannot be expressed
+cleanly in application configuration. Compositors start normal session programs
+directly; there is no custom service manager or portability framework.
+
+The Stow package also owns shell startup files, Git, Starship, and Nano
+configuration. Revision manifests pin external fonts, the `nwg-displays` fork,
+Colloid foundations, and Argon artwork for reproducible restoration.
+
+Sway uses a tracked include graph around a generated base patched from Fedora's
+packaged config. The repository intentionally contains no wallpaper, swaylock
+configuration, full replacement Sway base, or copied Colloid SVG assets.
