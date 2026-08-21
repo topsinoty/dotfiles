@@ -558,9 +558,9 @@ Optionally configure location-dependent night light:
 dotfiles-location-setup
 ```
 
-The location command performs one bounded IP lookup, asks for confirmation,
-supports manual fallback, and stores only coordinates in the local untracked
-`~/.config/dotfiles/location.env`. Wlsunset remains off when that file is absent.
+The location command asks for coordinates and stores them in the local untracked
+`~/.config/dotfiles/location.env`. It does not contact a location service.
+Wlsunset remains off when that file is absent.
 
 Sway and Niri start Mako, Swayidle, playerctld, clipboard watchers, Blueman, the
 MATE Polkit authentication agent, and optional Wlsunset directly. Their idle

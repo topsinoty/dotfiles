@@ -1,47 +1,11 @@
 #!/bin/sh
 
-# Use a bounded lookup once, then keep only confirmed coordinates locally.
+# Store user-provided coordinates locally.
 set -eu
 
 log_event()
 {
     logger --tag dotfiles-location-setup -- "$1" || true
-}
-
-fetch_location()
-{
-    curl \
-        --fail \
-        --silent \
-        --show-error \
-        --max-time 10 \
-        --max-filesize 65536 \
-        https://ipapi.co/json/
-}
-
-read_latitude()
-{
-    printf '%s' "$response" | jq --raw-output '.latitude // empty'
-}
-
-read_longitude()
-{
-    printf '%s' "$response" | jq --raw-output '.longitude // empty'
-}
-
-read_city()
-{
-    printf '%s' "$response" | jq --raw-output '.city // empty'
-}
-
-validate_response()
-{
-    printf '%s' "$response" | jq empty >/dev/null
-}
-
-clean_city()
-{
-    printf '%s' "$1" | tr --delete --complement '[:alnum:] .,_-' | cut --characters=1-80
 }
 
 validate_coordinate()
@@ -74,22 +38,6 @@ validate_coordinate()
         }'
 }
 
-confirm_detected_location()
-{
-    printf 'Detected %s: %s, %s\n' "$city" "$latitude" "$longitude"
-    printf 'Use these coordinates? [Y/n] '
-    read -r answer
-
-    case $answer in
-        n | N | no | NO)
-            return 1
-            ;;
-        *)
-            return 0
-            ;;
-    esac
-}
-
 read_location()
 {
     printf 'Latitude: '
@@ -110,49 +58,9 @@ save_location()
     } > "$config"
 }
 
-has_location()
-{
-    if [ -z "$latitude" ]; then
-        return 1
-    fi
-
-    if [ -z "$longitude" ]; then
-        return 1
-    fi
-
-    return 0
-}
-
 config=${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/location.env
-if ! response=$(fetch_location); then
-    log_event 'automatic location lookup failed'
-    response=
-fi
-
-if [ -n "$response" ] && ! validate_response; then
-    log_event 'automatic location lookup returned invalid JSON'
-    response=
-fi
-
-latitude=$(read_latitude) || latitude=
-longitude=$(read_longitude) || longitude=
-city=$(read_city) || city=
-
-city=$(clean_city "${city:-unknown location}")
-
-if has_location; then
-    log_event 'IP geolocation returned a candidate location'
-
-    if ! confirm_detected_location; then
-        latitude=
-        longitude=
-    fi
-fi
-
-if ! has_location; then
-    log_event 'using manual location entry'
-    read_location
-fi
+log_event 'using manual location entry'
+read_location
 
 if ! validate_coordinate "$latitude" -90 90; then
     log_event 'rejected an invalid latitude'
